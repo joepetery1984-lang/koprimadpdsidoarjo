@@ -10,16 +10,17 @@
 
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  ArrowRight, 
-  Bell, 
-  CheckCircle2, 
-  ShoppingBasket, 
-  Wallet, 
-  User, 
-  ChevronRight, 
-  ArrowLeft, 
-  ShoppingBag, 
+import onboarding1Img from './assets/onboarding1.jpg';
+import {
+  ArrowRight,
+  Bell,
+  CheckCircle2,
+  ShoppingBasket,
+  Wallet,
+  User,
+  ChevronRight,
+  ArrowLeft,
+  ShoppingBag,
   Home,
   LogOut,
   Lock,
@@ -45,25 +46,25 @@ import {
 } from 'lucide-react';
 
 // --- TYPES ---
-type Screen = 
-  | 'onboarding1' | 'onboarding2' | 'onboarding3' 
-  | 'login' | 'register' 
+type Screen =
+  | 'onboarding1' | 'onboarding2' | 'onboarding3'
+  | 'login' | 'register'
   | 'home' | 'sembako' | 'simpanan' | 'profil' | 'notifications'
   | 'checkout' | 'payment_method' | 'success_payment'
   | 'setor' | 'tarik' | 'bayar_simpanan' | 'riwayat_simpanan';
 
 // --- SHARED COMPONENTS ---
 
-const TopAppBar = ({ 
-  title, 
-  showBack, 
-  onBack, 
-  showActions = true, 
-  onNotifications 
-}: { 
-  title: string; 
-  showBack?: boolean; 
-  onBack?: () => void; 
+const TopAppBar = ({
+  title,
+  showBack,
+  onBack,
+  showActions = true,
+  onNotifications
+}: {
+  title: string;
+  showBack?: boolean;
+  onBack?: () => void;
   showActions?: boolean;
   onNotifications?: () => void;
 }) => (
@@ -120,33 +121,33 @@ const BottomNavBar = ({ active, onNavigate }: { active: Screen; onNavigate: (s: 
 
 // --- SCREENS ---
 
-const OnboardingScreen = ({ 
-  image, 
-  title, 
-  description, 
-  step, 
-  onNext, 
-  onSkip, 
-  buttonText = "Lanjut" 
-}: { 
-  image: string; 
-  title: string; 
-  description: string; 
-  step: number; 
-  onNext: () => void; 
+const OnboardingScreen = ({
+  image,
+  title,
+  description,
+  step,
+  onNext,
+  onSkip,
+  buttonText = "Lanjut"
+}: {
+  image: string;
+  title: string;
+  description: string;
+  step: number;
+  onNext: () => void;
   onSkip: () => void;
   buttonText?: string;
 }) => (
-  <motion.div 
-    initial={{ opacity: 0, x: 20 }} 
-    animate={{ opacity: 1, x: 0 }} 
+  <motion.div
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
     exit={{ opacity: 0, x: -20 }}
     className="min-h-screen flex flex-col items-center p-8 bg-surface"
   >
     <div className="w-full flex justify-end mb-8">
       <button onClick={onSkip} className="text-primary font-bold text-sm">Lewati</button>
     </div>
-    
+
     <div className="relative w-full max-w-sm mb-12">
       <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-2xl">
@@ -162,13 +163,13 @@ const OnboardingScreen = ({
     <div className="w-full space-y-8 pb-8">
       <div className="flex justify-center gap-2">
         {[1, 2, 3].map((s) => (
-          <div 
-            key={s} 
-            className={`h-2 rounded-full transition-all duration-300 ${s === step ? 'w-10 bg-primary' : 'w-2 bg-outline-variant'}`} 
+          <div
+            key={s}
+            className={`h-2 rounded-full transition-all duration-300 ${s === step ? 'w-10 bg-primary' : 'w-2 bg-outline-variant'}`}
           />
         ))}
       </div>
-      <button 
+      <button
         onClick={onNext}
         className="w-full py-5 bg-gradient-to-r from-primary to-primary-container text-white font-bold text-xl rounded-2xl shadow-xl flex items-center justify-center gap-2 active:scale-95 transition-all"
       >
@@ -180,9 +181,9 @@ const OnboardingScreen = ({
 );
 
 const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: () => void }) => (
-  <motion.div 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     className="min-h-screen pt-24 px-8 bg-surface space-y-12"
   >
     <div className="text-center space-y-4">
@@ -201,14 +202,14 @@ const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: (
           <label className="text-sm font-bold text-on-surface ml-1">Email atau Nomor WhatsApp</label>
           <div className="relative">
             <UserRound className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-outline-variant" />
-            <input 
-              type="text" 
-              placeholder="Contoh: 08123456789" 
+            <input
+              type="text"
+              placeholder="Contoh: 08123456789"
               className="w-full pl-12 pr-4 py-4 bg-surface-container-low rounded-2xl outline-none focus:ring-2 focus:ring-primary transition-all"
             />
           </div>
         </div>
-        
+
         <div className="space-y-1">
           <div className="flex justify-between items-center px-1">
             <label className="text-sm font-bold text-on-surface text-center">Kata Sandi</label>
@@ -216,9 +217,9 @@ const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: (
           </div>
           <div className="relative">
             <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-outline-variant" />
-            <input 
-              type="password" 
-              placeholder="Masukkan kata sandi" 
+            <input
+              type="password"
+              placeholder="Masukkan kata sandi"
               className="w-full pl-12 pr-12 py-4 bg-surface-container-low rounded-2xl outline-none focus:ring-2 focus:ring-primary transition-all"
             />
             <Eye className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-outline-variant" />
@@ -226,7 +227,7 @@ const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: (
         </div>
       </div>
 
-      <button 
+      <button
         onClick={onLogin}
         className="w-full py-4 bg-primary text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-all"
       >
@@ -241,7 +242,7 @@ const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: (
 
       <div className="grid grid-cols-2 gap-4">
         <button className="flex items-center justify-center gap-3 py-4 border border-outline-variant rounded-2xl hover:bg-surface-container-low transition-all">
-          <img src="https://picsum.photos/seed/google/32/32" className="w-5 h-5 rounded-full" referrerPolicy="no-referrer" />
+          <img src="https://img.icons8.com/color/48/google-logo.png" className="w-5 h-5 rounded-full" referrerPolicy="no-referrer" />
           <span className="text-sm font-bold">Google</span>
         </button>
         <button className="flex items-center justify-center gap-3 py-4 border border-outline-variant rounded-2xl hover:bg-surface-container-low transition-all">
@@ -258,9 +259,9 @@ const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: (
 );
 
 const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
-  <motion.div 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     className="pt-24 pb-32 px-6 space-y-8"
   >
     <section className="flex justify-between items-end">
@@ -284,7 +285,7 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
           </div>
           <Wallet className="w-8 h-8 opacity-30" />
         </div>
-        
+
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl">
             <p className="text-[9px] uppercase font-bold text-on-primary-container/70 mb-1">Simpanan Pokok</p>
@@ -297,13 +298,13 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
         </div>
 
         <div className="mt-8 flex gap-4 relative z-10">
-          <button 
+          <button
             onClick={() => onDetail('bayar_simpanan')}
             className="flex-1 bg-white text-primary py-4 rounded-xl font-bold text-sm active:scale-95 transition-all shadow-lg"
           >
             Bayar Simpanan
           </button>
-          <button 
+          <button
             onClick={() => onDetail('riwayat_simpanan')}
             className="flex-1 border border-white/40 bg-white/10 backdrop-blur-sm text-white py-4 rounded-xl font-bold text-sm active:scale-95 transition-all"
           >
@@ -324,7 +325,7 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
           <p className="text-xs text-on-secondary-container">Belanja sebelum tanggal 25!</p>
         </div>
       </div>
-      
+
       <div className="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant/10 editorial-shadow space-y-4">
         <div className="flex justify-between items-center">
           <div>
@@ -335,7 +336,7 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
             <ShoppingBasket className="w-6 h-6 text-primary" />
           </div>
         </div>
-        <button 
+        <button
           onClick={() => onDetail('sembako')}
           className="w-full bg-primary text-white py-4 rounded-2xl font-bold shadow-lg shadow-primary/20"
         >
@@ -351,14 +352,14 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
       </div>
       <div className="grid grid-cols-2 gap-4">
         {[
-          { name: 'Beras Premium 5kg', price: 'Rp 72.500', img: 'rice', badge: 'Terlaris' },
-          { name: 'Minyak Goreng 2L', price: 'Rp 34.200', img: 'oil', badge: 'Hemat' },
-          { name: 'Gula Pasir 1kg', price: 'Rp 16.000', img: 'sugar' },
-          { name: 'Telur Ayam 1kg', price: 'Rp 28.500', img: 'eggs' },
+          { name: 'Beras Premium 5kg', price: 'Rp 72.500', img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=300&q=80', badge: 'Terlaris' },
+          { name: 'Minyak Goreng 2L', price: 'Rp 34.200', img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=300&q=80', badge: 'Hemat' },
+          { name: 'Gula Pasir 1kg', price: 'Rp 16.000', img: 'https://images.unsplash.com/photo-1622484211148-52b36c4b62db?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Telur Ayam 1kg', price: 'Rp 28.500', img: 'https://images.unsplash.com/photo-1587486913049-53fc88980cfc?auto=format&fit=crop&w=300&q=80' },
         ].map((p) => (
           <div key={p.name} className="group flex flex-col space-y-2">
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-surface-container-low">
-              <img src={`https://picsum.photos/seed/${p.img}/300/400`} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" referrerPolicy="no-referrer" />
+              <img src={p.img} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" referrerPolicy="no-referrer" />
               {p.badge && (
                 <span className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">{p.badge}</span>
               )}
@@ -386,16 +387,16 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
         </div>
       </div>
       <div className="rounded-3xl overflow-hidden h-48 shadow-lg">
-        <img src="https://picsum.photos/seed/meeting/600/300" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+        <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
       </div>
     </section>
   </motion.div>
 );
 
 const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
-  <motion.div 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     className="pt-24 pb-32 px-6 space-y-8"
   >
     <section>
@@ -416,13 +417,13 @@ const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
 
     <div className="space-y-8">
       {[
-        { id: 1, name: 'Paket Berkah 1', content: 'Beras 5kg, Minyak 2L, Gula 1kg, Teh', price: 'Rp 145.000', img: 'food1', featured: true },
-        { id: 2, name: 'Paket Hemat 2', content: 'Minyak 1L, Gula 2kg, Garam, Kecap', price: 'Rp 85.000', img: 'food2' },
-        { id: 3, name: 'Paket Komplit 3', content: 'Beras 10kg, Minyak 2L, Telur 1kg, Kopi', price: 'Rp 210.000', img: 'food3' },
+        { id: 1, name: 'Paket Berkah 1', content: 'Beras 5kg, Minyak 2L, Gula 1kg, Teh', price: 'Rp 145.000', img: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80', featured: true },
+        { id: 2, name: 'Paket Hemat 2', content: 'Minyak 1L, Gula 2kg, Garam, Kecap', price: 'Rp 85.000', img: 'https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=300&q=80' },
+        { id: 3, name: 'Paket Komplit 3', content: 'Beras 10kg, Minyak 2L, Telur 1kg, Kopi', price: 'Rp 210.000', img: 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=300&q=80' },
       ].map((pkg) => (pkg.featured ? (
         <div key={pkg.id} className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden editorial-shadow flex flex-col">
           <div className="aspect-[16/9] overflow-hidden">
-            <img src={`https://picsum.photos/seed/${pkg.img}/800/400`} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
+            <img src={pkg.img} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
           </div>
           <div className="p-8 space-y-6">
             <div className="flex justify-between items-start">
@@ -433,7 +434,7 @@ const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
               </div>
               <span className="text-xl font-extrabold text-primary">{pkg.price}</span>
             </div>
-            <button 
+            <button
               onClick={() => onNext('checkout')}
               className="w-full bg-primary text-white py-5 rounded-2xl font-bold text-lg active:scale-95 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
             >
@@ -445,7 +446,7 @@ const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
       ) : (
         <div key={pkg.id} className="group flex bg-surface-container-lowest rounded-[2rem] overflow-hidden editorial-shadow">
           <div className="w-1/3 overflow-hidden">
-            <img src={`https://picsum.photos/seed/${pkg.img}/300/300`} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" referrerPolicy="no-referrer" />
+            <img src={pkg.img} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" referrerPolicy="no-referrer" />
           </div>
           <div className="flex-1 p-6 flex flex-col justify-between">
             <div>
@@ -466,9 +467,9 @@ const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
 );
 
 const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
-  <motion.div 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     className="pt-24 pb-32 px-6 space-y-10"
   >
     <section>
@@ -481,13 +482,13 @@ const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
         <p className="text-on-primary-container/80 text-[10px] font-bold uppercase tracking-widest">Saldo Total Gabungan</p>
         <h3 className="text-3xl font-bold mt-2 font-mono">Rp 7.825.000</h3>
         <div className="mt-8 flex gap-4">
-          <button 
+          <button
             onClick={() => onNavigate('setor')}
             className="flex-1 bg-white/20 backdrop-blur-md text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
           >
             <TrendingUp className="w-5 h-5" /> Setor
           </button>
-          <button 
+          <button
             onClick={() => onNavigate('tarik')}
             className="flex-1 bg-white text-primary py-4 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
           >
@@ -553,9 +554,9 @@ const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
 );
 
 const MainProfil = () => (
-  <motion.div 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     className="pt-24 pb-32 px-6 space-y-8"
   >
     <section className="bg-surface-container-lowest p-8 rounded-[2.5rem] editorial-shadow text-center space-y-6 relative overflow-hidden">
@@ -563,7 +564,7 @@ const MainProfil = () => (
       <div className="relative inline-block">
         <div className="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-primary to-primary-container">
           <div className="w-full h-full rounded-full border-4 border-surface-container-lowest overflow-hidden">
-            <img src="https://picsum.photos/seed/profil/300/300" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
           </div>
         </div>
         <div className="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full border-4 border-surface-container-lowest">
@@ -624,9 +625,9 @@ const MainProfil = () => (
 );
 
 const ScreenBayarSimpanan = ({ onNext }: { onNext: (s: Screen) => void }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }} 
-    animate={{ opacity: 1, y: 0 }} 
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
     className="pt-24 pb-12 px-6 space-y-8"
   >
     <section>
@@ -654,14 +655,14 @@ const ScreenBayarSimpanan = ({ onNext }: { onNext: (s: Screen) => void }) => (
               {item.status}
             </span>
           </div>
-          
+
           <div className="flex justify-between items-end bg-surface-container-lowest p-4 rounded-2xl">
             <div>
               <p className="text-[9px] text-on-surface-variant font-bold uppercase mb-1">Nominal</p>
               <p className="text-xl font-bold text-primary">Rp {item.amount}</p>
             </div>
             {item.status !== 'LUNAS' && (
-              <button 
+              <button
                 onClick={() => onNext('payment_method')}
                 className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-xs shadow-md active:scale-95 transition-all"
               >
@@ -681,9 +682,9 @@ const ScreenBayarSimpanan = ({ onNext }: { onNext: (s: Screen) => void }) => (
 );
 
 const ScreenRiwayatSimpanan = () => (
-  <motion.div 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     className="pt-24 pb-32 px-6 space-y-8"
   >
     <section className="flex justify-between items-end">
@@ -698,22 +699,26 @@ const ScreenRiwayatSimpanan = () => (
 
     <div className="space-y-8">
       {[
-        { date: 'Oktober 2023', items: [
-          { title: 'Setoran Wajib', time: '14 Okt • 09:12', amount: '+ Rp 25.000', type: 'in', method: 'Virtual Account' },
-          { title: 'Belanja Sembako', time: '10 Okt • 16:45', amount: '- Rp 145.000', type: 'out', method: 'Simpanan Sukarela' },
-          { title: 'Bagi Hasil SHU', time: '01 Okt • 00:01', amount: '+ Rp 345.000', type: 'in', method: 'System Auto' },
-        ]},
-        { date: 'September 2023', items: [
-          { title: 'Tarik Tunai', time: '28 Sep • 10:20', amount: '- Rp 500.000', type: 'out', method: 'Transfer Bank' },
-          { title: 'Setoran Wajib', time: '15 Sep • 08:30', amount: '+ Rp 25.000', type: 'in', method: 'Virtual Account' },
-        ]}
+        {
+          date: 'Oktober 2023', items: [
+            { title: 'Setoran Wajib', time: '14 Okt • 09:12', amount: '+ Rp 25.000', type: 'in', method: 'Virtual Account' },
+            { title: 'Belanja Sembako', time: '10 Okt • 16:45', amount: '- Rp 145.000', type: 'out', method: 'Simpanan Sukarela' },
+            { title: 'Bagi Hasil SHU', time: '01 Okt • 00:01', amount: '+ Rp 345.000', type: 'in', method: 'System Auto' },
+          ]
+        },
+        {
+          date: 'September 2023', items: [
+            { title: 'Tarik Tunai', time: '28 Sep • 10:20', amount: '- Rp 500.000', type: 'out', method: 'Transfer Bank' },
+            { title: 'Setoran Wajib', time: '15 Sep • 08:30', amount: '+ Rp 25.000', type: 'in', method: 'Virtual Account' },
+          ]
+        }
       ].map((group) => (
         <div key={group.date} className="space-y-4">
           <h3 className="text-[10px] font-bold text-outline-variant uppercase tracking-widest px-2">{group.date}</h3>
           <div className="bg-surface-container-lowest rounded-[2rem] editorial-shadow overflow-hidden">
             {group.items.map((item, i) => (
-              <div 
-                key={i} 
+              <div
+                key={i}
                 className={`p-6 flex justify-between items-center hover:bg-surface-container-low transition-all ${i !== group.items.length - 1 ? 'border-b border-outline-variant/10' : ''}`}
               >
                 <div className="flex items-center gap-4">
@@ -741,9 +746,9 @@ const ScreenRiwayatSimpanan = () => (
 );
 
 const ScreenNotifikasi = () => (
-  <motion.div 
-    initial={{ opacity: 0 }} 
-    animate={{ opacity: 1 }} 
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
     className="pt-24 pb-32 px-6 space-y-8"
   >
     <section>
@@ -756,7 +761,7 @@ const ScreenNotifikasi = () => (
         <span>Hari Ini</span>
         <button className="text-primary">Tandai dibaca</button>
       </div>
-      
+
       <div className="bg-surface-container-lowest p-6 rounded-[2rem] border-l-8 border-tertiary shadow-xl space-y-4">
         <div className="flex justify-between items-start">
           <h4 className="font-bold text-lg text-on-surface">Waktunya Belanja!</h4>
@@ -787,9 +792,9 @@ const ScreenNotifikasi = () => (
 );
 
 const CheckoutScreen = ({ onNext }: { onNext: () => void }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }} 
-    animate={{ opacity: 1, y: 0 }} 
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
     className="pt-24 pb-48 px-6 max-w-2xl mx-auto space-y-8"
   >
     <section>
@@ -804,9 +809,9 @@ const CheckoutScreen = ({ onNext }: { onNext: () => void }) => (
       </div>
       <div className="bg-surface-container-low rounded-3xl p-6 flex gap-6 items-center">
         <div className="w-20 h-20 rounded-2xl overflow-hidden bg-surface-container-highest flex-shrink-0">
-          <img 
-            alt="Paket Berkah" 
-            className="w-full h-full object-cover" 
+          <img
+            alt="Paket Berkah"
+            className="w-full h-full object-cover"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU1BXJe5idEs_QlLXtBmizK4DgE6Iz-AO3Z9iBuaT9t9bbs8r6H0egtWR-bgA5CLrJXR4xuOBm8_9cscNq11Bj11OotG75XUHWYFrLRlpwvebu8_aFQLSLUOh7IrpXZbXqk0ZhZs42rPK0FaVdexWU-UXEsImKIzfAdr8JFO4uHAm2lkqo40jesxiwsscc_Bs0LlhK7YcaJOw9KhR3w35avEg9n3f3NyLfJPx_XatxIQv7zxFTLjH2luKqpLgQG11BDwpqXv8wTzMX"
             referrerPolicy="no-referrer"
           />
@@ -826,7 +831,7 @@ const CheckoutScreen = ({ onNext }: { onNext: () => void }) => (
       <h3 className="text-lg font-bold text-on-surface">Metode Pengambilan</h3>
       <div className="grid grid-cols-1 gap-4">
         <div className="relative group cursor-pointer">
-          <input defaultChecked className="peer hidden" id="pickup" name="delivery_method" type="radio"/>
+          <input defaultChecked className="peer hidden" id="pickup" name="delivery_method" type="radio" />
           <label className="block bg-surface-container-low peer-checked:bg-secondary-container border-2 border-transparent peer-checked:border-primary-container rounded-3xl p-6 transition-all" htmlFor="pickup">
             <div className="flex items-start gap-4">
               <Store className="w-5 h-5 text-primary" />
@@ -839,7 +844,7 @@ const CheckoutScreen = ({ onNext }: { onNext: () => void }) => (
           <CheckCircle2 className="absolute top-6 right-6 text-primary scale-75 opacity-0 peer-checked:opacity-100 transition-opacity" />
         </div>
         <div className="relative group cursor-pointer">
-          <input className="peer hidden" id="delivery" name="delivery_method" type="radio"/>
+          <input className="peer hidden" id="delivery" name="delivery_method" type="radio" />
           <label className="block bg-surface-container-low peer-checked:bg-secondary-container border-2 border-transparent peer-checked:border-primary-container rounded-3xl p-6 transition-all" htmlFor="delivery">
             <div className="flex items-start gap-4">
               <Truck className="w-5 h-5 text-primary" />
@@ -883,7 +888,7 @@ const CheckoutScreen = ({ onNext }: { onNext: () => void }) => (
 
     <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white/90 backdrop-blur-xl z-50 rounded-t-3xl shadow-[0_-8px_30px_rgba(0,105,92,0.08)]">
       <div className="px-6 pt-6 pb-10">
-        <button 
+        <button
           onClick={onNext}
           className="w-full py-5 bg-primary text-white font-bold text-lg rounded-2xl shadow-lg shadow-primary/20 active:scale-95 transition-all flex items-center justify-center gap-3"
         >
@@ -896,9 +901,9 @@ const CheckoutScreen = ({ onNext }: { onNext: () => void }) => (
 );
 
 const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
-  <motion.div 
-    initial={{ opacity: 0, x: 20 }} 
-    animate={{ opacity: 1, x: 0 }} 
+  <motion.div
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
     className="pt-24 pb-48 px-6 max-w-2xl mx-auto space-y-8"
   >
     <section>
@@ -915,7 +920,7 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
     <section className="space-y-4">
       <h3 className="text-on-surface font-bold text-lg px-1">Pilih Metode Pembayaran</h3>
       <label className="relative block cursor-pointer group">
-        <input defaultChecked className="peer sr-only" name="payment" type="radio"/>
+        <input defaultChecked className="peer sr-only" name="payment" type="radio" />
         <div className="p-5 rounded-xl bg-surface-container-low border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/10 transition-all duration-200">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center">
@@ -944,14 +949,14 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
         </div>
         <div className="grid grid-cols-2 gap-3">
           <label className="cursor-pointer">
-            <input className="peer sr-only" name="payment" type="radio"/>
+            <input className="peer sr-only" name="payment" type="radio" />
             <div className="p-3 rounded-lg bg-surface-container-lowest border-2 border-transparent peer-checked:border-primary flex items-center justify-center gap-2 transition-all">
               <img alt="BRI" className="h-4 grayscale peer-checked:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiUmok2u3rFle6SNS4AylXhSu5LE5vzBWj4dMCpsOurvC3cs41tfULjXMZK63uUHocwsTyxs3PEWuszM1rbfnc2lex0eAyK-W9RWLTc7zA15xlLljntx9CAz8W1rFp4F78vrYvMaqp8yDIT-5hRGSoKaZCItMuTwxJ9yWkN6Uf1zsNOF6ImUP49AhBxeUqYgJeZB2onlJ2g2XQ2f8EMHk4Pjj64qZIs2ciFasidOJXor2kt0KWQnWBvi08khbNYauwtRcNQ6Zi7jW0" referrerPolicy="no-referrer" />
               <span className="font-bold text-xs text-on-surface">BRI</span>
             </div>
           </label>
           <label className="cursor-pointer">
-            <input className="peer sr-only" name="payment" type="radio"/>
+            <input className="peer sr-only" name="payment" type="radio" />
             <div className="p-3 rounded-lg bg-surface-container-lowest border-2 border-transparent peer-checked:border-primary flex items-center justify-center gap-2 transition-all">
               <img alt="Mandiri" className="h-4 grayscale peer-checked:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcJEWDgPe8G-LFDU1Ka0t9lMJ0GPDRPmirGAtqLtHColYJbpGbvGqyLwm-v6CtSAxPHNBEbp3pZv-Ffi42PNAZFVbU0zFmMO8AapLdf5J39xyYXShVm0Nr3Yml5MT_Fxo_TEnd0isk0RF2eH7h9Gno-3_yz5iTos0D3-9dU8kSrhDMEgE33xkV9aoJdz-pKpsknu6oRFz9YicFCD_twQrYcUJ0MTpW2bufpYL-uYA6CprRtZSHNPdFtfsiQaPqa8ULEkhflGlh6KcD" referrerPolicy="no-referrer" />
               <span className="font-bold text-xs text-on-surface">Mandiri</span>
@@ -961,7 +966,7 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
       </div>
 
       <label className="relative block cursor-pointer group">
-        <input className="peer sr-only" name="payment" type="radio"/>
+        <input className="peer sr-only" name="payment" type="radio" />
         <div className="p-5 rounded-xl bg-surface-container-low border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/10 transition-all duration-200">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-secondary text-white flex items-center justify-center">
@@ -1016,7 +1021,7 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
             <p className="text-sm font-bold text-on-surface">Simpanan</p>
           </div>
         </div>
-        <button 
+        <button
           onClick={onNext}
           className="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
         >
@@ -1029,9 +1034,9 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
 );
 
 const SuccessPaymentScreen = ({ onHome }: { onHome: () => void }) => (
-  <motion.div 
-    initial={{ opacity: 0, scale: 0.9 }} 
-    animate={{ opacity: 1, scale: 1 }} 
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={{ opacity: 1, scale: 1 }}
     className="min-h-screen pt-24 pb-12 px-8 flex flex-col items-center justify-center bg-surface"
   >
     <div className="relative mb-8">
@@ -1051,7 +1056,7 @@ const SuccessPaymentScreen = ({ onHome }: { onHome: () => void }) => (
         <h3 className="font-bold text-base text-on-surface">Detail Pesanan</h3>
         <span className="text-[9px] font-bold text-primary uppercase bg-primary/10 px-2 py-0.5 rounded-full">Lunas</span>
       </div>
-      
+
       <div className="space-y-3">
         <div className="flex justify-between items-start">
           <div>
@@ -1083,14 +1088,14 @@ const SuccessPaymentScreen = ({ onHome }: { onHome: () => void }) => (
     </div>
 
     <div className="w-full space-y-4">
-      <button 
+      <button
         onClick={onHome}
         className="w-full py-5 bg-primary text-white font-bold text-xl rounded-2xl shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3"
       >
         <Home className="w-6 h-6" />
         Kembali ke Beranda
       </button>
-      
+
       <button className="w-full py-5 bg-surface-container-low text-primary font-bold text-lg rounded-2xl flex items-center justify-center gap-3 hover:bg-surface-container transition-all">
         <Download className="w-5 h-5" />
         Unduh Kuitansi (PDF)
@@ -1100,9 +1105,9 @@ const SuccessPaymentScreen = ({ onHome }: { onHome: () => void }) => (
 );
 
 const ScreenSetor = ({ onBack }: { onBack: () => void }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }} 
-    animate={{ opacity: 1, y: 0 }} 
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
     className="pt-24 pb-12 px-8 flex flex-col space-y-8"
   >
     <section className="text-center space-y-2">
@@ -1115,9 +1120,9 @@ const ScreenSetor = ({ onBack }: { onBack: () => void }) => (
         <label className="text-[10px] font-bold text-primary uppercase ml-1">Nominal Setoran</label>
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-primary text-lg">Rp</span>
-          <input 
-            type="number" 
-            placeholder="0" 
+          <input
+            type="number"
+            placeholder="0"
             className="w-full pl-12 pr-4 py-5 bg-surface-container-lowest rounded-2xl outline-none focus:ring-2 focus:ring-primary text-2xl font-bold font-mono"
           />
         </div>
@@ -1160,9 +1165,9 @@ const ScreenSetor = ({ onBack }: { onBack: () => void }) => (
 );
 
 const ScreenTarik = ({ onBack }: { onBack: () => void }) => (
-  <motion.div 
-    initial={{ opacity: 0, y: 20 }} 
-    animate={{ opacity: 1, y: 0 }} 
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
     className="pt-24 pb-12 px-8 flex flex-col space-y-8"
   >
     <section className="text-center space-y-2">
@@ -1175,9 +1180,9 @@ const ScreenTarik = ({ onBack }: { onBack: () => void }) => (
         <label className="text-[10px] font-bold text-red-600 uppercase ml-1">Nominal Penarikan</label>
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-red-600 text-lg">Rp</span>
-          <input 
-            type="number" 
-            placeholder="0" 
+          <input
+            type="number"
+            placeholder="0"
             className="w-full pl-12 pr-4 py-5 bg-white rounded-2xl outline-none focus:ring-2 focus:ring-red-500 text-2xl font-bold font-mono"
           />
         </div>
@@ -1222,21 +1227,21 @@ export default function App() {
 
   const onboardingData = useMemo(() => [
     {
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD1EgmszW98-ilIavGe6u66mEV8ip96M1NgGDmm6k62zW88xO51w6LvEWDO9fjppliYjTLuZ4DvjRztUooKTLU5_8_jjnIUrcfAQtMY356IRFel3FH_PN2JLvxqTdDUHYqfMuGSBYovQ3efiIwfhOoW17_6pxJklIcwXLeiBCS73K6rwfZbDbNAPATePOiGXobJWoyvfrBb1TBX4eGUTurqXoN0EgW4Yle8kUil_Moq0en8xnfdcwoeXtUEOL99XXTzmqeo03VL789e",
-      title: "Selamat Datang di KOPRIMA",
-      description: "Menjadi bagian dari keluarga besar koperasi untuk kesejahteraan bersama.",
+      image: "https://i.ibb.co.com/pBcf28zv/onboarding1.jpg",
+      title: "Selamat Datang di KOPRIMA DPD Sidoarjo",
+      description: "Bergabunglah dengan ribuan keluarga yang sudah merasakan manfaat koperasi untuk kesejahteraan bersama",
       next: 'onboarding2' as Screen
     },
     {
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCWDGfEGZmN4Lj086zXNcwyP13or7BXwhuSgJCfnzR72icJMXWH7LxPMvrzXND80Y2ehorqC8ss3qcMw-ZIVncF9TzOnVu5W6-Qjg-GShDycrbGkq4gmGWhxZt8yiZPCFPkW8TMESRQFhu-I7w9JCRk_5v_tPlfQGjx-psUwxzADJwXpzuYsl6Q4qBfQeGeaetH-M2dWNxg0EMjtXIhIYDTA-pKiNZZP7Udq_eZebrXCw1Y2ApRCUpEZ0h5H2ymyWND0mle81mZXCqN",
-      title: "Kebutuhan Dapur Terjamin",
-      description: "Dapatkan paket sembako berkualitas setiap bulan dengan harga terjangkau.",
+      image: "https://i.ibb.co.com/pvTvg0rQ/d362a7bf-367c-48e0-8598-7770a76d93c8.png",
+      title: "Kebutuhan Dapur Terjamin Setiap Bulan",
+      description: "Dapatkan paket sembako berkualitas tinggi dengan harga terjangkau. Pastikan dapur keluarga selalu terisi tanpa khawatir.",
       next: 'onboarding3' as Screen
     },
     {
-      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC0oVsaURObb4pEhiU5nEoybXxykBj6Brk-UliUqiyL9uP-I-JPWhZTKoi8Qh-BIRGJvkC-L_l0cxgrwthF3tUSxfYVBSigHjeqhdAzNDk1i58y20T3LS3ORlZXpZAenP4UUx5w-NFyIJ9MJu9oUqTfAibAXJUzJTCsHReM_2_AtSxibWFyuX36K-rfAJ-vwQbHp3dxsWZfXBSAbZP1-fNTP8vw-Tn03KiAAZxmRy4toTUnZ5X1D8APf-gFhX5dhQc4o59IgX96FzpH",
-      title: "Membangun Masa Depan",
-      description: "Kelola simpanan pokok dan wajib Anda dengan mudah untuk hari esok lebih baik.",
+      image: "https://i.ibb.co.com/7xTMKh3H/grok-image-2e68f89a-c06a-41b2-b202-6aa2fda875c5.jpg",
+      title: "Bangun Masa Depan yang Lebih Baik",
+      description: "Kelola simpanan pokok dan simpanan wajib dengan mudah dan aman. Wujudkan impian keluarga Anda bersama KOPRIMA",
       next: 'login' as Screen,
       button: "Mulai Sekarang"
     }
@@ -1244,18 +1249,18 @@ export default function App() {
 
   const renderScreen = () => {
     switch (screen) {
-      case 'onboarding1': 
+      case 'onboarding1':
         return <OnboardingScreen {...onboardingData[0]} step={1} onNext={() => setScreen('onboarding2')} onSkip={() => setScreen('login')} />;
-      case 'onboarding2': 
+      case 'onboarding2':
         return <OnboardingScreen {...onboardingData[1]} step={2} onNext={() => setScreen('onboarding3')} onSkip={() => setScreen('login')} />;
-      case 'onboarding3': 
+      case 'onboarding3':
         return <OnboardingScreen {...onboardingData[2]} step={3} onNext={() => setScreen('login')} onSkip={() => setScreen('login')} buttonText="Mulai Sekarang" />;
-      
-      case 'login': 
+
+      case 'login':
         return <AuthLogin onLogin={() => setScreen('home')} onRegister={() => setScreen('register')} />;
-      case 'register': 
+      case 'register':
         return <AuthLogin onLogin={() => setScreen('home')} onRegister={() => setScreen('login')} />; // Mocking register screen inside Login for now
-      
+
       case 'home': return <MainHome onDetail={(s) => setScreen(s)} />;
       case 'sembako': return <MainSembako onNext={(s) => setScreen(s)} />;
       case 'simpanan': return <MainSimpanan onNavigate={(s) => setScreen(s)} />;
@@ -1276,7 +1281,7 @@ export default function App() {
   const showNav = ['home', 'sembako', 'simpanan', 'profil', 'riwayat_simpanan'].includes(screen);
 
   const getTitle = () => {
-    switch(screen) {
+    switch (screen) {
       case 'home': return 'KOPRIMA SIDOARJO';
       case 'sembako': return 'BELANJA SEMBAKO';
       case 'simpanan': return 'TABUNGAN SAYA';
@@ -1297,8 +1302,8 @@ export default function App() {
     <div className="max-w-md mx-auto bg-surface min-h-screen relative shadow-2xl">
       <AnimatePresence mode="wait">
         {showHeader && (
-          <TopAppBar 
-            title={getTitle()} 
+          <TopAppBar
+            title={getTitle()}
             showBack={['notifications', 'checkout', 'payment_method', 'setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan'].includes(screen)}
             onBack={() => {
               if (['setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan'].includes(screen)) {
@@ -1313,7 +1318,7 @@ export default function App() {
           />
         )}
       </AnimatePresence>
-      
+
       <main className="w-full">
         <AnimatePresence mode="wait">
           {renderScreen()}
