@@ -16,6 +16,9 @@ import paket2Img from './assets/paket2.png';
 import paket3Img from './assets/paket3.png';
 import paket4Img from './assets/paket4.png';
 import logoImg from './assets/logo.png';
+import umroh1Img from './assets/umroh1.jpeg';
+import umroh2Img from './assets/umroh2.jpeg';
+import umroh3Img from './assets/umroh3.jpeg';
 import {
   ArrowRight,
   Bell,
@@ -48,7 +51,8 @@ import {
   Store,
   FileText,
   Download,
-  Users
+  Users,
+  Ticket
 } from 'lucide-react';
 
 // --- TYPES ---
@@ -58,7 +62,7 @@ type Screen =
   | 'home' | 'sembako' | 'simpanan' | 'profil' | 'notifications'
   | 'checkout' | 'payment_method' | 'success_payment'
   | 'setor' | 'tarik' | 'bayar_simpanan' | 'riwayat_simpanan' | 'referral'
-  | 'ubah_profil' | 'keamanan' | 'bantuan' | 'tentang_kami' | 'syarat_ketentuan' | 'kebijakan_privasi';
+  | 'ubah_profil' | 'keamanan' | 'bantuan' | 'tentang_kami' | 'syarat_ketentuan' | 'kebijakan_privasi' | 'voucher_umroh';
 
 // --- SHARED COMPONENTS ---
 
@@ -349,6 +353,17 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
         >
           Mulai Belanja Sekarang
         </button>
+      </div>
+    </div>
+
+    <div onClick={() => onDetail('voucher_umroh')} className="card bg-gradient-to-tr from-[#CFA144] to-[#F1D77A] p-6 rounded-3xl flex items-center justify-between cursor-pointer active:scale-95 transition-all shadow-xl border border-white/20">
+      <div className="text-[#5C4510]">
+        <p className="text-[10px] uppercase font-extrabold tracking-widest mb-1 opacity-80">Eksklusif Anggota</p>
+        <h4 className="text-2xl font-black font-headline mb-1">Voucher Umroh</h4>
+        <p className="text-xs font-bold bg-white/40 inline-block px-3 py-1 rounded-full shadow-sm">Rp 1.500.000</p>
+      </div>
+      <div className="bg-white p-4 rounded-2xl shadow-lg border border-white/50">
+        <Ticket className="w-8 h-8 text-[#CFA144]" />
       </div>
     </div>
 
@@ -1036,6 +1051,53 @@ const ScreenKebijakanPrivasi = () => (
   </motion.div>
 );
 
+const ScreenVoucherUmroh = () => (
+  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="pt-24 pb-32 px-6 space-y-8 bg-surface">
+    <div className="text-center space-y-2 mb-8 no-print">
+      <h2 className="text-2xl font-extrabold font-headline text-primary">Voucher Umroh</h2>
+      <p className="text-sm text-on-surface-variant font-medium">Spesial untuk Anggota KOPRIMA DPD Sidoarjo</p>
+    </div>
+
+    <div className="w-full max-w-md mx-auto space-y-6 no-print">
+      <h3 className="font-bold text-lg text-on-surface">Galeri Umroh</h3>
+      <div className="flex gap-4 overflow-x-auto pb-4 snap-x hide-scrollbar">
+        {[umroh1Img, umroh2Img, umroh3Img].map((img, i) => (
+          <img key={i} src={img} className="w-64 h-48 object-cover rounded-3xl shadow-lg snap-center flex-shrink-0 border-4 border-surface-container-lowest" />
+        ))}
+      </div>
+    </div>
+
+    <div className="print-area w-full max-w-2xl mx-auto bg-gradient-to-br from-[#CFA144] to-[#F1D77A] rounded-[2.5rem] p-8 shadow-2xl text-white relative overflow-hidden card border-8 border-white">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/5 rounded-full blur-2xl"></div>
+      <div className="relative z-10 flex flex-col items-center text-center space-y-6">
+        <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg p-2 mb-2">
+          <img src={logoImg} className="w-full h-full object-contain" />
+        </div>
+        <div>
+          <p className="text-xs font-bold uppercase tracking-[0.3em] opacity-90 mb-2">Voucher Umroh KOPRIMA</p>
+          <h2 className="text-4xl font-black font-headline tracking-tight mb-2 drop-shadow-md">Rp 1.500.000</h2>
+          <p className="text-sm font-medium opacity-90">Berlaku untuk 1 Tahun sejak bergabung</p>
+        </div>
+        <div className="w-full h-px bg-white/30 border-dashed border-t-2"></div>
+        <div className="w-full text-left bg-white/10 p-5 rounded-2xl border border-white/20 backdrop-blur-sm">
+          <p className="text-[10px] uppercase font-bold opacity-80 mb-1">Diberikan Kepada:</p>
+          <p className="text-xl font-bold font-headline text-white">Ibu Siti Aminah</p>
+          <p className="text-xs font-medium opacity-90 mt-2">ID Anggota: KPRM-00123</p>
+        </div>
+        <p className="text-[9px] opacity-70 mt-4">*Voucher ini dapat dicetak dan ditukarkan sesuai syarat & ketentuan yang berlaku.</p>
+      </div>
+    </div>
+
+    <div className="no-print pt-6">
+      <button onClick={() => window.print()} className="w-full py-5 bg-primary text-white font-bold text-lg rounded-2xl flex items-center justify-center gap-3 shadow-xl active:scale-95 transition-all">
+        <FileText className="w-6 h-6" />
+        Cetak Voucher Sekarang
+      </button>
+    </div>
+  </motion.div>
+);
+
 const ScreenBayarSimpanan = ({ onNext }: { onNext: (s: Screen) => void }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -1684,6 +1746,7 @@ export default function App() {
       case 'tentang_kami': return <ScreenTentangKami onNavigate={(s) => setScreen(s)} />;
       case 'syarat_ketentuan': return <ScreenSyaratKetentuan />;
       case 'kebijakan_privasi': return <ScreenKebijakanPrivasi />;
+      case 'voucher_umroh': return <ScreenVoucherUmroh />;
       case 'notifications': return <ScreenNotifikasi />;
       case 'checkout': return <CheckoutScreen onNext={() => setScreen('payment_method')} />;
       case 'payment_method': return <PaymentMethodScreen onNext={() => setScreen('success_payment')} />;
@@ -1696,7 +1759,7 @@ export default function App() {
     }
   };
 
-  const showHeader = ['home', 'sembako', 'simpanan', 'profil', 'notifications', 'checkout', 'payment_method', 'setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan', 'referral', 'ubah_profil', 'keamanan', 'bantuan', 'tentang_kami', 'syarat_ketentuan', 'kebijakan_privasi'].includes(screen);
+  const showHeader = ['home', 'sembako', 'simpanan', 'profil', 'notifications', 'checkout', 'payment_method', 'setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan', 'referral', 'ubah_profil', 'keamanan', 'bantuan', 'tentang_kami', 'syarat_ketentuan', 'kebijakan_privasi', 'voucher_umroh'].includes(screen);
   const showNav = ['home', 'sembako', 'simpanan', 'profil', 'riwayat_simpanan'].includes(screen);
 
   const getTitle = () => {
@@ -1720,6 +1783,7 @@ export default function App() {
       case 'tentang_kami': return 'TENTANG KAMI';
       case 'syarat_ketentuan': return 'SYARAT & KETENTUAN';
       case 'kebijakan_privasi': return 'KEBIJAKAN PRIVASI';
+      case 'voucher_umroh': return 'VOUCHER UMROH';
       default: return 'KOPRIMA';
     }
   };
@@ -1736,6 +1800,8 @@ export default function App() {
                 setScreen('simpanan');
               } else if (['syarat_ketentuan', 'kebijakan_privasi'].includes(screen)) {
                 setScreen('tentang_kami');
+              } else if (screen === 'voucher_umroh') {
+                setScreen('home');
               } else if (['referral', 'ubah_profil', 'keamanan', 'bantuan', 'tentang_kami'].includes(screen)) {
                 setScreen('profil');
               } else if (screen === 'payment_method') {

@@ -108,3 +108,33 @@
     color: #4A9A2E;
   }
 }
+
+/* =========================
+   PRINT STYLES
+========================= */
+@media print {
+  body {
+    background: white;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-area, .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 2rem !important;
+    box-shadow: none !important;
+    border-radius: 20px !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
