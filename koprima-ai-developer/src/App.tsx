@@ -111,7 +111,7 @@ const BottomNavBar = ({ active, onNavigate }: { active: Screen; onNavigate: (s: 
             onClick={() => onNavigate(tab.id as Screen)}
             className="flex flex-col items-center justify-center p-2 transition-all duration-300 relative min-w-[64px] group"
           >
-            <div className={`relative px-5 py-1 rounded-full transition-all duration-300 mb-1 ${isActive ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'bg-transparent text-on-surface-variant group-hover:bg-surface-container-low'}`}>
+            <div className={`relative px-5 py-1 rounded-full transition-all duration-300 mb-1 ${isActive ? 'btn-primary ' : 'bg-transparent text-on-surface-variant group-hover:bg-surface-container-low'}`}>
               <tab.icon className="w-6 h-6" />
             </div>
             <span className={`font-lexend text-[10px] transition-all duration-300 truncate ${isActive ? 'font-bold text-primary translate-y-0 opacity-100' : 'font-medium text-on-surface-variant translate-y-1 opacity-80'}`}>
@@ -176,7 +176,7 @@ const OnboardingScreen = ({
       </div>
       <button
         onClick={onNext}
-        className="w-full py-5 bg-gradient-to-r from-primary to-primary-container text-white font-bold text-xl rounded-2xl shadow-xl flex items-center justify-center gap-2 active:scale-95 transition-all"
+        className="w-full py-5 btn-primary font-bold text-xl rounded-2xl  flex items-center justify-center gap-2 active:scale-95 transition-all"
       >
         {buttonText}
         <ArrowRight className="w-6 h-6" />
@@ -201,7 +201,7 @@ const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: (
       <p className="text-sm text-on-surface-variant">Silakan masuk untuk melanjutkan aktivitas di KOPRIMA</p>
     </div>
 
-    <div className="bg-surface-container-lowest p-8 rounded-3xl editorial-shadow space-y-6">
+    <div className="bg-surface-container-lowest p-8 rounded-3xl card space-y-6">
       <div className="space-y-4">
         <div className="space-y-1">
           <label className="text-sm font-bold text-on-surface ml-1">Email atau Nomor WhatsApp</label>
@@ -234,7 +234,7 @@ const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: (
 
       <button
         onClick={onLogin}
-        className="w-full py-4 bg-primary text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-all"
+        className="w-full py-4 btn-primary font-bold rounded-2xl shadow-lg active:scale-95 transition-all"
       >
         Masuk Sekarang
       </button>
@@ -275,13 +275,13 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
         <h2 className="text-2xl font-extrabold text-primary font-headline">Selamat Pagi, Ibu</h2>
         <p className="text-on-surface-variant text-sm">Semoga hari ini penuh berkah.</p>
       </div>
-      <div className="bg-secondary-container px-4 py-2 rounded-full flex items-center gap-2">
+      <div className="badge-active px-4 py-2 rounded-full flex items-center gap-2">
         <BadgeCheck className="w-4 h-4 text-primary" />
         <span className="text-primary font-bold text-xs uppercase">Aktif</span>
       </div>
     </section>
 
-    <div className="bg-gradient-to-br from-primary to-primary-container rounded-[2.5rem] p-8 text-white space-y-8 editorial-shadow relative overflow-hidden">
+    <div className="card-balance rounded-[2.5rem] p-8  space-y-8 card relative overflow-hidden">
       <div className="relative z-10">
         <div className="flex justify-between items-start mb-12">
           <div>
@@ -293,11 +293,11 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
 
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl">
-            <p className="text-[9px] uppercase font-bold text-on-primary-container/70 mb-1">Simpanan Pokok</p>
+            <p className="text-[9px] uppercase font-bold text-white/70 mb-1">Simpanan Pokok</p>
             <p className="text-base font-bold">Rp 100.000</p>
           </div>
           <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl">
-            <p className="text-[9px] uppercase font-bold text-on-primary-container/70 mb-1">Simpanan Wajib</p>
+            <p className="text-[9px] uppercase font-bold text-white/70 mb-1">Simpanan Wajib</p>
             <p className="text-base font-bold">Rp 525.000</p>
           </div>
         </div>
@@ -321,7 +321,7 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div className="bg-secondary text-white p-6 rounded-3xl flex items-center gap-4 editorial-shadow">
+      <div className="card-green p-6 rounded-3xl flex items-center gap-4 card">
         <div className="bg-white/20 p-4 rounded-2xl">
           <ShoppingBag className="w-8 h-8" />
         </div>
@@ -331,7 +331,7 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
         </div>
       </div>
 
-      <div className="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant/10 editorial-shadow space-y-4">
+      <div className="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant/10 card space-y-4">
         <div className="flex justify-between items-center">
           <div>
             <h4 className="text-xl font-bold">Butuh Sembako?</h4>
@@ -343,7 +343,7 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
         </div>
         <button
           onClick={() => onDetail('sembako')}
-          className="w-full bg-primary text-white py-4 rounded-2xl font-bold shadow-lg shadow-primary/20"
+          className="w-full btn-primary py-4 rounded-2xl font-bold "
         >
           Mulai Belanja Sekarang
         </button>
@@ -366,7 +366,7 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
             <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-surface-container-low">
               <img src={p.img} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" referrerPolicy="no-referrer" />
               {p.badge && (
-                <span className="absolute top-4 left-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase">{p.badge}</span>
+                <span className="absolute top-4 left-4 btn-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">{p.badge}</span>
               )}
             </div>
             <div className="px-2">
@@ -427,7 +427,7 @@ const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
         { id: 3, name: 'Paket Komplit 3', content: 'Beras 10kg, Minyak 2L, Telur 1kg, Kopi', price: 'Rp 210.000', img: paket3Img },
         { id: 4, name: 'Paket Spesial 4', content: 'Sembako Premium Lengkap', price: 'Rp 325.000', img: paket4Img },
       ].map((pkg) => (pkg.featured ? (
-        <div key={pkg.id} className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden editorial-shadow flex flex-col">
+        <div key={pkg.id} className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden card flex flex-col">
           <div className="aspect-[16/9] overflow-hidden">
             <img src={pkg.img} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" referrerPolicy="no-referrer" />
           </div>
@@ -442,7 +442,7 @@ const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
             </div>
             <button
               onClick={() => onNext('checkout')}
-              className="w-full bg-primary text-white py-5 rounded-2xl font-bold text-lg active:scale-95 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2"
+              className="w-full btn-primary py-5 rounded-2xl font-bold text-lg active:scale-95 transition-all  flex items-center justify-center gap-2"
             >
               <ShoppingBasket className="w-6 h-6" />
               BELI PAKET {pkg.id}
@@ -450,7 +450,7 @@ const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
           </div>
         </div>
       ) : (
-        <div key={pkg.id} className="group flex bg-surface-container-lowest rounded-[2rem] overflow-hidden editorial-shadow">
+        <div key={pkg.id} className="group flex bg-surface-container-lowest rounded-[2rem] overflow-hidden card">
           <div className="w-1/3 overflow-hidden">
             <img src={pkg.img} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" referrerPolicy="no-referrer" />
           </div>
@@ -483,7 +483,7 @@ const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
       <h2 className="text-2xl font-extrabold text-primary font-headline tracking-tight">Tabungan Saya</h2>
     </section>
 
-    <div className="bg-gradient-to-br from-primary to-primary-container p-8 rounded-[2rem] text-white space-y-6 shadow-2xl relative overflow-hidden">
+    <div className="card-balance p-8 rounded-[2rem]  space-y-6 shadow-2xl relative overflow-hidden">
       <div className="relative z-10">
         <p className="text-on-primary-container/80 text-[10px] font-bold uppercase tracking-widest">Saldo Total Gabungan</p>
         <h3 className="text-3xl font-bold mt-2 font-mono">Rp 7.825.000</h3>
@@ -527,7 +527,7 @@ const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
       ))}
     </div>
 
-    <div className="bg-surface-container-lowest p-8 rounded-[2rem] editorial-shadow space-y-8">
+    <div className="bg-surface-container-lowest p-8 rounded-[2rem] card space-y-8">
       <div className="flex justify-between items-center">
         <h3 className="text-2xl font-bold">Transaksi Terakhir</h3>
         <button onClick={() => onNavigate('riwayat_simpanan')} className="text-primary font-bold text-sm">Lihat Semua</button>
@@ -540,7 +540,7 @@ const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
         ].map((t, i) => (
           <div key={i} className="flex justify-between items-center p-4 rounded-2xl hover:bg-surface-container-low transition-all">
             <div className="flex items-center gap-4">
-              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${t.type === 'in' ? 'bg-secondary-container text-primary' : 'bg-red-50 text-red-500'}`}>
+              <div className={`w-12 h-12 rounded-full flex items-center justify-center ${t.type === 'in' ? 'badge-active' : 'bg-red-50 text-red-500'}`}>
                 {t.type === 'in' ? <TrendingUp className="w-6 h-6" /> : <Gift className="w-6 h-6 rotate-180" />}
               </div>
               <div>
@@ -565,7 +565,7 @@ const MainProfil = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
     animate={{ opacity: 1 }}
     className="pt-24 pb-32 px-6 space-y-8"
   >
-    <section className="bg-surface-container-lowest p-8 rounded-[2.5rem] editorial-shadow text-center space-y-6 relative overflow-hidden">
+    <section className="bg-surface-container-lowest p-8 rounded-[2.5rem] card text-center space-y-6 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16"></div>
       <div className="relative inline-block">
         <div className="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-primary to-primary-container">
@@ -573,7 +573,7 @@ const MainProfil = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
             <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
           </div>
         </div>
-        <div className="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full border-4 border-surface-container-lowest">
+        <div className="absolute bottom-1 right-1 btn-primary p-2 rounded-full border-4 border-surface-container-lowest">
           <BadgeCheck className="w-4 h-4" />
         </div>
       </div>
@@ -582,17 +582,17 @@ const MainProfil = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
         <p className="text-on-surface-variant font-medium text-xs">Anggota Sejak Januari 2022</p>
       </div>
       <div className="flex gap-2 justify-center">
-        <span className="px-4 py-1.5 bg-secondary-container text-primary font-bold text-[10px] rounded-full uppercase">Aktif</span>
+        <span className="px-4 py-1.5 badge-active font-bold text-[10px] rounded-full uppercase">Aktif</span>
         <span className="px-4 py-1.5 bg-surface-container-high text-on-surface-variant font-bold text-[10px] rounded-full uppercase">KOP-2022-0891</span>
       </div>
     </section>
 
     <div className="grid grid-cols-2 gap-4">
-      <div className="bg-primary-container p-6 rounded-3xl text-center space-y-1">
-        <p className="text-[10px] text-on-primary-container/70 font-bold uppercase">Tabungan</p>
+      <div className="card-balance p-6 rounded-3xl text-center space-y-1">
+        <p className="text-[10px] text-white/70 font-bold uppercase">Tabungan</p>
         <p className="text-xl font-bold text-white">Rp 7.8M</p>
       </div>
-      <div className="bg-surface-container-low p-6 rounded-3xl text-center space-y-1">
+      <div className="card-green p-6 rounded-3xl text-center space-y-1">
         <p className="text-[10px] text-on-surface-variant/70 font-bold uppercase">Poin</p>
         <p className="text-xl font-bold text-primary">850 Pts</p>
       </div>
@@ -637,7 +637,7 @@ const ScreenReferral = () => (
     animate={{ opacity: 1, x: 0 }}
     className="pt-24 pb-32 px-6 space-y-8"
   >
-    <section className="bg-gradient-to-br from-primary to-primary-container p-6 rounded-[2.5rem] text-white space-y-4 shadow-2xl relative overflow-hidden">
+    <section className="card-balance p-6 rounded-[2.5rem]  space-y-4 shadow-2xl relative overflow-hidden">
       <div className="relative z-10">
         <h2 className="text-2xl font-extrabold font-headline">Referral Saya</h2>
         <p className="text-sm text-white/80 mt-1">Ajak lebih banyak keluarga untuk bergabung dan dapatkan poin tambahan!</p>
@@ -657,7 +657,7 @@ const ScreenReferral = () => (
         <h3 className="font-bold text-lg text-on-surface">Anggota Terdaftar (3)</h3>
         <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">+150 Pts</span>
       </div>
-      <div className="bg-surface-container-lowest rounded-[2rem] overflow-hidden editorial-shadow">
+      <div className="bg-surface-container-lowest rounded-[2rem] overflow-hidden card">
         {[
           { name: 'Bapak Budi Santoso', date: '12 Okt 2023', status: 'Aktif', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80' },
           { name: 'Ibu Ratna Sari', date: '05 Sep 2023', status: 'Aktif', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80' },
@@ -669,7 +669,7 @@ const ScreenReferral = () => (
               <h4 className="font-bold text-sm text-on-surface">{ref.name}</h4>
               <p className="text-[10px] text-on-surface-variant font-medium mt-0.5">Bergabung: {ref.date}</p>
             </div>
-            <span className={`text-[9px] font-bold uppercase px-3 py-1 rounded-full ${ref.status === 'Aktif' ? 'bg-secondary-container text-primary' : 'bg-surface-container-highest text-on-surface-variant'}`}>
+            <span className={`text-[9px] font-bold uppercase px-3 py-1 rounded-full ${ref.status === 'Aktif' ? 'badge-active' : 'bg-surface-container-highest text-on-surface-variant'}`}>
               {ref.status}
             </span>
           </div>
@@ -706,7 +706,7 @@ const ScreenBayarSimpanan = ({ onNext }: { onNext: (s: Screen) => void }) => (
                 <p className="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">{item.period}</p>
               </div>
             </div>
-            <span className={`px-3 py-1 rounded-full text-[9px] font-bold ${item.status === 'LUNAS' ? 'bg-secondary-container text-primary' : 'bg-red-50 text-red-500 border border-red-100'}`}>
+            <span className={`px-3 py-1 rounded-full text-[9px] font-bold ${item.status === 'LUNAS' ? 'badge-active' : 'bg-red-50 text-red-500 border border-red-100'}`}>
               {item.status}
             </span>
           </div>
@@ -719,7 +719,7 @@ const ScreenBayarSimpanan = ({ onNext }: { onNext: (s: Screen) => void }) => (
             {item.status !== 'LUNAS' && (
               <button
                 onClick={() => onNext('payment_method')}
-                className="bg-primary text-white px-6 py-2.5 rounded-xl font-bold text-xs shadow-md active:scale-95 transition-all"
+                className="btn-primary px-6 py-2.5 rounded-xl font-bold text-xs shadow-md active:scale-95 transition-all"
               >
                 Bayar Sekarang
               </button>
@@ -770,14 +770,14 @@ const ScreenRiwayatSimpanan = () => (
       ].map((group) => (
         <div key={group.date} className="space-y-4">
           <h3 className="text-[10px] font-bold text-outline-variant uppercase tracking-widest px-2">{group.date}</h3>
-          <div className="bg-surface-container-lowest rounded-[2rem] editorial-shadow overflow-hidden">
+          <div className="bg-surface-container-lowest rounded-[2rem] card overflow-hidden">
             {group.items.map((item, i) => (
               <div
                 key={i}
                 className={`p-6 flex justify-between items-center hover:bg-surface-container-low transition-all ${i !== group.items.length - 1 ? 'border-b border-outline-variant/10' : ''}`}
               >
                 <div className="flex items-center gap-4">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${item.type === 'in' ? 'bg-secondary-container text-primary' : 'bg-red-50 text-red-500'}`}>
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${item.type === 'in' ? 'badge-active' : 'bg-red-50 text-red-500'}`}>
                     {item.type === 'in' ? <TrendingUp className="w-6 h-6" /> : <Landmark className="w-6 h-6" />}
                   </div>
                   <div>
@@ -817,20 +817,20 @@ const ScreenNotifikasi = () => (
         <button className="text-primary">Tandai dibaca</button>
       </div>
 
-      <div className="bg-surface-container-lowest p-6 rounded-[2rem] border-l-8 border-tertiary shadow-xl space-y-4">
+      <div className="bg-surface-container-lowest p-6 rounded-[2rem] border-l-8 border-tertiary  space-y-4">
         <div className="flex justify-between items-start">
           <h4 className="font-bold text-lg text-on-surface">Waktunya Belanja!</h4>
           <span className="text-[9px] font-bold bg-tertiary-fixed text-on-tertiary-fixed-variant px-2 py-0.5 rounded-full uppercase">Penting</span>
         </div>
         <p className="text-sm text-on-surface-variant leading-relaxed">Jangan lupa batas pengambilan sembako bulan ini adalah tanggal <span className="font-bold text-tertiary">25</span>.</p>
         <div className="flex items-center justify-between">
-          <button className="bg-primary text-white px-6 py-2 rounded-xl text-xs font-bold">Pesan Sekarang</button>
+          <button className="btn-primary px-6 py-2 rounded-xl text-xs font-bold">Pesan Sekarang</button>
           <span className="text-[10px] text-outline italic">2 jam lalu</span>
         </div>
       </div>
 
-      <div className="bg-surface-container-lowest p-6 rounded-[2rem] editorial-shadow flex gap-4">
-        <div className="w-12 h-12 bg-secondary-container text-primary rounded-full flex items-center justify-center shrink-0">
+      <div className="bg-surface-container-lowest p-6 rounded-[2rem] card flex gap-4">
+        <div className="w-12 h-12 badge-active rounded-full flex items-center justify-center shrink-0">
           <MoreVertical className="w-6 h-6" />
         </div>
         <div className="space-y-1">
@@ -838,7 +838,7 @@ const ScreenNotifikasi = () => (
           <p className="text-xs text-on-surface-variant">Hadir pada Koordinasi DPD jam 09:00.</p>
           <div className="flex -space-x-3 pt-2">
             {[1, 2, 3].map(i => <div key={i} className="w-7 h-7 rounded-full border-2 border-surface bg-outline-variant" />)}
-            <div className="w-7 h-7 rounded-full border-2 border-surface bg-primary text-white text-[8px] flex items-center justify-center">+12</div>
+            <div className="w-7 h-7 rounded-full border-2 border-surface btn-primary text-[8px] flex items-center justify-center">+12</div>
           </div>
         </div>
       </div>
@@ -945,7 +945,7 @@ const CheckoutScreen = ({ onNext }: { onNext: () => void }) => (
       <div className="px-6 pt-6 pb-10">
         <button
           onClick={onNext}
-          className="w-full py-5 bg-primary text-white font-bold text-lg rounded-2xl shadow-lg shadow-primary/20 active:scale-95 transition-all flex items-center justify-center gap-3"
+          className="w-full py-5 btn-primary font-bold text-lg rounded-2xl  active:scale-95 transition-all flex items-center justify-center gap-3"
         >
           <span>Lanjut ke Pembayaran</span>
           <ArrowRight className="w-6 h-6" />
@@ -967,7 +967,7 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
         <h2 className="text-primary font-bold text-2xl tracking-tight">Rp 127.000</h2>
         <div className="mt-3 pt-3 border-t border-outline-variant/10 flex justify-between items-center">
           <span className="text-on-surface-variant text-[9px] font-medium tracking-tight">ID: KPRM-20231024-001</span>
-          <span className="bg-secondary-container text-on-secondary-container text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full">Menunggu</span>
+          <span className="badge-active text-[8px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full">Menunggu</span>
         </div>
       </div>
     </section>
@@ -978,7 +978,7 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
         <input defaultChecked className="peer sr-only" name="payment" type="radio" />
         <div className="p-5 rounded-xl bg-surface-container-low border-2 border-transparent peer-checked:border-primary peer-checked:bg-primary/10 transition-all duration-200">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full btn-primary flex items-center justify-center">
               <Wallet className="w-6 h-6" />
             </div>
             <div className="flex-1">
@@ -994,7 +994,7 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
 
       <div className="p-5 rounded-xl bg-surface-container-low border border-outline-variant/15">
         <div className="flex items-center gap-4 mb-4">
-          <div className="w-12 h-12 rounded-full bg-secondary-container text-primary flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full badge-active flex items-center justify-center">
             <Landmark className="w-6 h-6" />
           </div>
           <div className="flex-1">
@@ -1042,7 +1042,7 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="p-5 rounded-2xl bg-primary/5 border border-primary/10">
           <div className="flex items-center gap-3 mb-3">
-            <span className="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">1</span>
+            <span className="w-7 h-7 rounded-full btn-primary flex items-center justify-center text-xs font-bold">1</span>
             <h4 className="font-bold text-primary">Periksa Kembali</h4>
           </div>
           <p className="text-sm text-on-surface-variant leading-relaxed">Pastikan nominal dan metode pembayaran sudah sesuai dengan keinginan Ibu sebelum melanjutkan.</p>
@@ -1078,7 +1078,7 @@ const PaymentMethodScreen = ({ onNext }: { onNext: () => void }) => (
         </div>
         <button
           onClick={onNext}
-          className="w-full bg-primary text-white py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
+          className="w-full btn-primary py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2"
         >
           <span>Konfirmasi Pembayaran</span>
           <ArrowRight className="w-6 h-6" />
@@ -1096,7 +1096,7 @@ const SuccessPaymentScreen = ({ onHome }: { onHome: () => void }) => (
   >
     <div className="relative mb-8">
       <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
-      <div className="relative w-24 h-24 bg-primary text-white rounded-full flex items-center justify-center shadow-2xl">
+      <div className="relative w-24 h-24 btn-primary rounded-full flex items-center justify-center shadow-2xl">
         <CheckCircle2 className="w-12 h-12" />
       </div>
     </div>
@@ -1106,7 +1106,7 @@ const SuccessPaymentScreen = ({ onHome }: { onHome: () => void }) => (
       <p className="text-on-surface-variant font-medium text-base px-2">Transaksi Ibu telah berhasil diproses oleh KOPRIMA.</p>
     </div>
 
-    <div className="w-full bg-surface-container-lowest rounded-[2rem] p-6 editorial-shadow space-y-5 mb-10">
+    <div className="w-full bg-surface-container-lowest rounded-[2rem] p-6 card space-y-5 mb-10">
       <div className="flex justify-between items-center border-b border-outline-variant/20 pb-3">
         <h3 className="font-bold text-base text-on-surface">Detail Pesanan</h3>
         <span className="text-[9px] font-bold text-primary uppercase bg-primary/10 px-2 py-0.5 rounded-full">Lunas</span>
@@ -1145,7 +1145,7 @@ const SuccessPaymentScreen = ({ onHome }: { onHome: () => void }) => (
     <div className="w-full space-y-4">
       <button
         onClick={onHome}
-        className="w-full py-5 bg-primary text-white font-bold text-xl rounded-2xl shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3"
+        className="w-full py-5 btn-primary font-bold text-xl rounded-2xl  active:scale-95 transition-all flex items-center justify-center gap-3"
       >
         <Home className="w-6 h-6" />
         Kembali ke Beranda
@@ -1213,7 +1213,7 @@ const ScreenSetor = ({ onBack }: { onBack: () => void }) => (
       </div>
     </div>
 
-    <button className="w-full py-5 bg-primary text-white font-bold rounded-2xl shadow-lg active:scale-95 transition-all">
+    <button className="w-full py-5 btn-primary font-bold rounded-2xl shadow-lg active:scale-95 transition-all">
       Proses Setoran
     </button>
   </motion.div>
@@ -1390,3 +1390,4 @@ export default function App() {
     </div>
   );
 }
+

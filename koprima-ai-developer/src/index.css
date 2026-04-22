@@ -2,24 +2,67 @@
 @import "tailwindcss";
 
 @theme {
+  /* =========================
+     FONT SYSTEM
+  ========================= */
   --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-headline: "Public Sans", sans-serif;
-  --font-body: "Inter", sans-serif;
-  --font-lexend: "Lexend", sans-serif;
+  --font-headline: "Lexend", "Public Sans", sans-serif;
+  --font-body: "Public Sans", "Inter", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --color-primary: #004f45;
-  --color-primary-container: #00695c;
-  --color-on-primary-container: #94e5d5;
-  --color-secondary: #47645e;
-  --color-secondary-container: #c6e6de;
-  --color-on-secondary-container: #4b6862;
-  --color-surface: #f8faf9;
-  --color-on-surface: #191c1c;
-  --color-on-surface-variant: #3e4946;
-  --color-surface-container-low: #f2f4f3;
-  --color-surface-container-lowest: #ffffff;
-  --color-outline-variant: #bec9c5;
+  /* =========================
+     PRIMARY (BIRU LOGO)
+  ========================= */
+  --color-primary: #0E4A7B;
+  --color-primary-hover: #1F6AA5;
+  --color-primary-active: #0A3558;
+
+  --color-primary-container: #E6F0F8;
+  --color-on-primary-container: #0E4A7B;
+
+  /* =========================
+     SECONDARY (HIJAU LOGO)
+  ========================= */
+  --color-secondary: #6CC24A;
+  --color-secondary-hover: #8EDB6A;
+  --color-secondary-active: #4A9A2E;
+
+  --color-secondary-container: #EAF8E4;
+  --color-on-secondary-container: #2E6B1F;
+
+  /* =========================
+     GRADIENT (WAJIB UNTUK BRAND FEEL)
+  ========================= */
+  --gradient-primary: linear-gradient(135deg, #0E4A7B, #1F6AA5);
+  --gradient-secondary: linear-gradient(135deg, #6CC24A, #8EDB6A);
+  --gradient-mix: linear-gradient(135deg, #0E4A7B, #6CC24A);
+
+  /* =========================
+     SURFACE (CLEAN UI)
+  ========================= */
+  --color-surface: #F5F7FA;
+  --color-surface-container-low: #EEF2F5;
+  --color-surface-container: #E6EBF0;
+  --color-surface-container-high: #DDE3E8;
+  --color-surface-container-lowest: #FFFFFF;
+
+  /* =========================
+     TEXT & NEUTRAL
+  ========================= */
+  --color-on-surface: #1A1A1A;
+  --color-on-surface-variant: #5A6B75;
+
+  /* =========================
+     BORDER & OUTLINE
+  ========================= */
+  --color-outline-variant: #D0D7DE;
+
+  /* =========================
+     STATE COLORS
+  ========================= */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
 }
 
 @layer base {
@@ -36,4 +79,32 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: rgba(248, 250, 249, 0.8);
+}
+
+@layer components {
+  .card-balance {
+    background: var(--gradient-primary);
+    color: white;
+  }
+  
+  .card-green {
+    background: var(--gradient-secondary);
+    color: #0F2A1D;
+  }
+  
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 8px 20px rgba(14, 74, 123, 0.25);
+  }
+  
+  .card {
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+  
+  .badge-active {
+    background: rgba(108, 194, 74, 0.15);
+    color: #4A9A2E;
+  }
 }
