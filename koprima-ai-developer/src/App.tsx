@@ -11,6 +11,10 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import onboarding1Img from './assets/onboarding1.jpg';
+import paket1Img from './assets/paket1.png';
+import paket2Img from './assets/paket2.png';
+import paket3Img from './assets/paket3.png';
+import paket4Img from './assets/paket4.png';
 import {
   ArrowRight,
   Bell,
@@ -42,7 +46,8 @@ import {
   Info,
   Store,
   FileText,
-  Download
+  Download,
+  Users
 } from 'lucide-react';
 
 // --- TYPES ---
@@ -51,7 +56,7 @@ type Screen =
   | 'login' | 'register'
   | 'home' | 'sembako' | 'simpanan' | 'profil' | 'notifications'
   | 'checkout' | 'payment_method' | 'success_payment'
-  | 'setor' | 'tarik' | 'bayar_simpanan' | 'riwayat_simpanan';
+  | 'setor' | 'tarik' | 'bayar_simpanan' | 'riwayat_simpanan' | 'referral';
 
 // --- SHARED COMPONENTS ---
 
@@ -417,9 +422,10 @@ const MainSembako = ({ onNext }: { onNext: (s: Screen) => void }) => (
 
     <div className="space-y-8">
       {[
-        { id: 1, name: 'Paket Berkah 1', content: 'Beras 5kg, Minyak 2L, Gula 1kg, Teh', price: 'Rp 145.000', img: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80', featured: true },
-        { id: 2, name: 'Paket Hemat 2', content: 'Minyak 1L, Gula 2kg, Garam, Kecap', price: 'Rp 85.000', img: 'https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=300&q=80' },
-        { id: 3, name: 'Paket Komplit 3', content: 'Beras 10kg, Minyak 2L, Telur 1kg, Kopi', price: 'Rp 210.000', img: 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?auto=format&fit=crop&w=300&q=80' },
+        { id: 1, name: 'Paket Berkah 1', content: 'Beras 5kg, Minyak 2L, Gula 1kg, Teh', price: 'Rp 145.000', img: paket1Img, featured: true },
+        { id: 2, name: 'Paket Hemat 2', content: 'Minyak 1L, Gula 2kg, Garam, Kecap', price: 'Rp 85.000', img: paket2Img },
+        { id: 3, name: 'Paket Komplit 3', content: 'Beras 10kg, Minyak 2L, Telur 1kg, Kopi', price: 'Rp 210.000', img: paket3Img },
+        { id: 4, name: 'Paket Spesial 4', content: 'Sembako Premium Lengkap', price: 'Rp 325.000', img: paket4Img },
       ].map((pkg) => (pkg.featured ? (
         <div key={pkg.id} className="group bg-surface-container-lowest rounded-[2.5rem] overflow-hidden editorial-shadow flex flex-col">
           <div className="aspect-[16/9] overflow-hidden">
@@ -553,7 +559,7 @@ const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
   </motion.div>
 );
 
-const MainProfil = () => (
+const MainProfil = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
@@ -594,11 +600,12 @@ const MainProfil = () => (
 
     <div className="bg-surface-container-lowest rounded-[2rem] overflow-hidden">
       {[
-        { title: 'Ubah Profil', icon: UserRound, desc: 'Perbarui data diri & foto' },
-        { title: 'Keamanan', icon: Lock, desc: 'PIN & Kata Sandi' },
-        { title: 'Bantuan', icon: HelpCircle, desc: 'Pusat dukungan 24/7' },
+        { title: 'Ubah Profil', icon: UserRound, desc: 'Perbarui data diri & foto', id: 'ubah_profil' },
+        { title: 'Referral Saya', icon: Users, desc: 'Daftar anggota yang diajak', id: 'referral' },
+        { title: 'Keamanan', icon: Lock, desc: 'PIN & Kata Sandi', id: 'keamanan' },
+        { title: 'Bantuan', icon: HelpCircle, desc: 'Pusat dukungan 24/7', id: 'bantuan' },
       ].map((m) => (
-        <button key={m.title} className="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-all group">
+        <button key={m.title} onClick={() => m.id === 'referral' ? onNavigate('referral') : undefined} className="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-all group">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-primary/5 text-primary rounded-2xl flex items-center justify-center">
               <m.icon className="w-6 h-6" />
@@ -621,6 +628,54 @@ const MainProfil = () => (
         </div>
       </button>
     </div>
+  </motion.div>
+);
+
+const ScreenReferral = () => (
+  <motion.div
+    initial={{ opacity: 0, x: 20 }}
+    animate={{ opacity: 1, x: 0 }}
+    className="pt-24 pb-32 px-6 space-y-8"
+  >
+    <section className="bg-gradient-to-br from-primary to-primary-container p-6 rounded-[2.5rem] text-white space-y-4 shadow-2xl relative overflow-hidden">
+      <div className="relative z-10">
+        <h2 className="text-2xl font-extrabold font-headline">Referral Saya</h2>
+        <p className="text-sm text-white/80 mt-1">Ajak lebih banyak keluarga untuk bergabung dan dapatkan poin tambahan!</p>
+        <div className="mt-6 bg-white/20 backdrop-blur-md p-4 rounded-2xl flex items-center justify-between border border-white/30">
+          <div>
+            <p className="text-[10px] uppercase font-bold text-white/80 mb-1">Kode Referral Anda</p>
+            <p className="font-mono font-bold text-lg tracking-widest text-white drop-shadow-md">KOP-SITI-2023</p>
+          </div>
+          <button className="bg-white text-primary px-5 py-3 rounded-xl font-bold text-sm shadow-lg active:scale-95 transition-all">Salin</button>
+        </div>
+      </div>
+      <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
+    </section>
+
+    <section className="space-y-4">
+      <div className="flex items-center justify-between px-1">
+        <h3 className="font-bold text-lg text-on-surface">Anggota Terdaftar (3)</h3>
+        <span className="text-xs font-bold text-primary bg-primary/10 px-3 py-1 rounded-full">+150 Pts</span>
+      </div>
+      <div className="bg-surface-container-lowest rounded-[2rem] overflow-hidden editorial-shadow">
+        {[
+          { name: 'Bapak Budi Santoso', date: '12 Okt 2023', status: 'Aktif', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&q=80' },
+          { name: 'Ibu Ratna Sari', date: '05 Sep 2023', status: 'Aktif', img: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80' },
+          { name: 'Bapak Anton Wijaya', date: '21 Agu 2023', status: 'Menunggu', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&q=80' },
+        ].map((ref, idx) => (
+          <div key={idx} className={`p-5 flex items-center gap-4 hover:bg-surface-container-low transition-all ${idx !== 2 ? 'border-b border-outline-variant/10' : ''}`}>
+            <img src={ref.img} className="w-12 h-12 rounded-full object-cover border-2 border-surface-container-highest" referrerPolicy="no-referrer" />
+            <div className="flex-1">
+              <h4 className="font-bold text-sm text-on-surface">{ref.name}</h4>
+              <p className="text-[10px] text-on-surface-variant font-medium mt-0.5">Bergabung: {ref.date}</p>
+            </div>
+            <span className={`text-[9px] font-bold uppercase px-3 py-1 rounded-full ${ref.status === 'Aktif' ? 'bg-secondary-container text-primary' : 'bg-surface-container-highest text-on-surface-variant'}`}>
+              {ref.status}
+            </span>
+          </div>
+        ))}
+      </div>
+    </section>
   </motion.div>
 );
 
@@ -1264,7 +1319,8 @@ export default function App() {
       case 'home': return <MainHome onDetail={(s) => setScreen(s)} />;
       case 'sembako': return <MainSembako onNext={(s) => setScreen(s)} />;
       case 'simpanan': return <MainSimpanan onNavigate={(s) => setScreen(s)} />;
-      case 'profil': return <MainProfil />;
+      case 'profil': return <MainProfil onNavigate={(s) => setScreen(s)} />;
+      case 'referral': return <ScreenReferral />;
       case 'notifications': return <ScreenNotifikasi />;
       case 'checkout': return <CheckoutScreen onNext={() => setScreen('payment_method')} />;
       case 'payment_method': return <PaymentMethodScreen onNext={() => setScreen('success_payment')} />;
@@ -1277,7 +1333,7 @@ export default function App() {
     }
   };
 
-  const showHeader = ['home', 'sembako', 'simpanan', 'profil', 'notifications', 'checkout', 'payment_method', 'setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan'].includes(screen);
+  const showHeader = ['home', 'sembako', 'simpanan', 'profil', 'notifications', 'checkout', 'payment_method', 'setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan', 'referral'].includes(screen);
   const showNav = ['home', 'sembako', 'simpanan', 'profil', 'riwayat_simpanan'].includes(screen);
 
   const getTitle = () => {
@@ -1294,6 +1350,7 @@ export default function App() {
       case 'tarik': return 'TARIK TUNAI';
       case 'bayar_simpanan': return 'TAGIHAN SIMPANAN';
       case 'riwayat_simpanan': return 'RIWAYAT TRANSAKSI';
+      case 'referral': return 'REFERRAL SAYA';
       default: return 'KOPRIMA';
     }
   };
@@ -1304,10 +1361,12 @@ export default function App() {
         {showHeader && (
           <TopAppBar
             title={getTitle()}
-            showBack={['notifications', 'checkout', 'payment_method', 'setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan'].includes(screen)}
+            showBack={screen !== 'home'}
             onBack={() => {
               if (['setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan'].includes(screen)) {
                 setScreen('simpanan');
+              } else if (screen === 'referral') {
+                setScreen('profil');
               } else if (screen === 'payment_method') {
                 setScreen('checkout');
               } else {
