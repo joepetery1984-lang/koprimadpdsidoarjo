@@ -197,14 +197,15 @@ const AuthLogin = ({ onLogin, onRegister }: { onLogin: () => void; onRegister: (
     animate={{ opacity: 1 }}
     className="min-h-screen pt-24 px-8 bg-surface space-y-12"
   >
-    <div className="text-center space-y-4">
-      <div className="w-20 h-20 bg-primary-container/10 rounded-2xl mx-auto flex items-center justify-center overflow-hidden">
-        <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center">
-          <BadgeCheck className="w-8 h-8 text-white" />
-        </div>
+    <div className="text-center space-y-3">
+      <div className="w-40 h-40 mx-auto flex items-center justify-center overflow-hidden drop-shadow-2xl">
+        <img src={logoImg} alt="Logo KOPRIMA" className="w-full h-full object-contain" />
       </div>
-      <h1 className="text-xl font-extrabold text-primary font-headline">Selamat Datang Kembali</h1>
-      <p className="text-sm text-on-surface-variant">Silakan masuk untuk melanjutkan aktivitas di KOPRIMA</p>
+      <div className="space-y-1">
+        <h1 className="text-2xl font-black text-primary font-headline tracking-tight">KOPRIMA DPD SIDOARJO</h1>
+        <p className="text-sm font-semibold text-secondary italic">"Pengeluaranku Penghasilanku"</p>
+      </div>
+      <p className="text-sm text-on-surface-variant pt-2">Silakan masuk untuk melanjutkan aktivitas di KOPRIMA</p>
     </div>
 
     <div className="bg-surface-container-lowest p-8 rounded-3xl card space-y-6">
@@ -273,145 +274,140 @@ const MainHome = ({ onDetail }: { onDetail: (s: Screen) => void }) => (
   <motion.div
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    className="pt-24 pb-32 px-6 space-y-8"
+    className="pb-32 space-y-0"
   >
-    <section className="flex justify-between items-end">
-      <div>
-        <p className="text-secondary font-bold text-[9px] uppercase tracking-widest mb-1">Wilayah DPD Sidoarjo</p>
-        <h2 className="text-2xl font-extrabold text-primary font-headline">Selamat Pagi, Ibu</h2>
-        <p className="text-on-surface-variant text-sm">Semoga hari ini penuh berkah.</p>
-      </div>
-      <div className="badge-active px-4 py-2 rounded-full flex items-center gap-2">
-        <BadgeCheck className="w-4 h-4 text-primary" />
-        <span className="text-primary font-bold text-xs uppercase">Aktif</span>
-      </div>
-    </section>
+    {/* ── HERO HEADER ─────────────────────────────────── */}
+    <div className="card-balance px-6 pt-28 pb-10 relative overflow-hidden">
+      {/* decorative blobs */}
+      <div className="absolute -right-20 -top-20 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute -left-10 bottom-0 w-48 h-48 bg-white/5 rounded-full blur-2xl" />
 
-    <div className="card-balance rounded-[2.5rem] p-8  space-y-8 card relative overflow-hidden">
-      <div className="relative z-10">
-        <div className="flex justify-between items-start mb-12">
+      <div className="relative z-10 space-y-6">
+        {/* greeting row */}
+        <div className="flex justify-between items-start">
           <div>
-            <p className="text-on-primary-container text-xs font-medium mb-1">Total Saldo Simpanan</p>
-            <h3 className="text-2xl font-bold tracking-tight">Rp 7.825.000</h3>
+            <p className="text-white/60 text-[10px] font-bold uppercase tracking-widest mb-1">DPD Sidoarjo · {new Date().toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'short' })}</p>
+            <h2 className="text-2xl font-extrabold text-white font-headline leading-tight">Selamat Pagi,<br />Ibu Siti Aminah 👋</h2>
           </div>
-          <Wallet className="w-8 h-8 opacity-30" />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl">
-            <p className="text-[9px] uppercase font-bold text-white/70 mb-1">Simpanan Pokok</p>
-            <p className="text-base font-bold">Rp 100.000</p>
-          </div>
-          <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl">
-            <p className="text-[9px] uppercase font-bold text-white/70 mb-1">Simpanan Wajib</p>
-            <p className="text-base font-bold">Rp 525.000</p>
+          <div className="flex items-center gap-1.5 bg-green-400/20 border border-green-300/30 px-3 py-1.5 rounded-full">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <span className="text-green-300 font-bold text-[10px] uppercase tracking-wider">Aktif</span>
           </div>
         </div>
 
-        <div className="mt-8 flex gap-4 relative z-10">
-          <button
-            onClick={() => onDetail('bayar_simpanan')}
-            className="flex-1 bg-white text-primary py-4 rounded-xl font-bold text-sm active:scale-95 transition-all shadow-lg"
-          >
-            Bayar Simpanan
-          </button>
-          <button
-            onClick={() => onDetail('riwayat_simpanan')}
-            className="flex-1 border border-white/40 bg-white/10 backdrop-blur-sm text-white py-4 rounded-xl font-bold text-sm active:scale-95 transition-all"
-          >
-            Riwayat
-          </button>
-        </div>
-      </div>
-      <div className="absolute -right-16 -bottom-16 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div className="card-green p-6 rounded-3xl flex items-center gap-4 card">
-        <div className="bg-white/20 p-4 rounded-2xl">
-          <ShoppingBag className="w-8 h-8" />
-        </div>
+        {/* balance */}
         <div>
-          <h4 className="font-bold">Pengingat Sembako</h4>
-          <p className="text-xs text-on-secondary-container">Belanja sebelum tanggal 25!</p>
+          <p className="text-white/60 text-[10px] uppercase font-bold tracking-widest mb-1">Total Saldo Simpanan</p>
+          <h3 className="text-4xl font-black text-white font-mono tracking-tight drop-shadow">Rp 7.825.000</h3>
+        </div>
+
+        {/* mini stats */}
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            { label: 'Bisa Tarik', val: 'Rp 7.2Jt', icon: '✅' },
+            { label: 'Terkunci', val: 'Rp 625Rb', icon: '🔒' },
+            { label: 'Bonus', val: 'Rp 495Rb', icon: '🎁' },
+          ].map((s) => (
+            <div key={s.label} className="bg-white/10 backdrop-blur-sm rounded-2xl p-3 border border-white/15">
+              <p className="text-[10px] text-white/60 font-medium">{s.icon} {s.label}</p>
+              <p className="text-white font-black text-xs font-mono mt-0.5">{s.val}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* quick action buttons */}
+        <div className="grid grid-cols-4 gap-2 pt-1">
+          {[
+            { label: 'Bayar', icon: Wallet, action: 'bayar_simpanan' as Screen },
+            { label: 'Transaksi', icon: TrendingUp, action: 'riwayat_simpanan' as Screen },
+            { label: 'Sembako', icon: ShoppingBasket, action: 'sembako' as Screen },
+            { label: 'Voucher', icon: Ticket, action: 'voucher_umroh' as Screen },
+          ].map((btn) => (
+            <button
+              key={btn.label}
+              onClick={() => onDetail(btn.action)}
+              className="flex flex-col items-center gap-2 bg-white/10 hover:bg-white/20 active:scale-95 border border-white/20 rounded-2xl py-3 transition-all"
+            >
+              <div className="w-9 h-9 bg-white/15 rounded-xl flex items-center justify-center">
+                <btn.icon className="w-4.5 h-4.5 text-white" />
+              </div>
+              <span className="text-white/80 text-[9px] font-bold">{btn.label}</span>
+            </button>
+          ))}
         </div>
       </div>
+    </div>
 
-      <div className="bg-surface-container-lowest p-6 rounded-3xl border border-outline-variant/10 card space-y-4">
-        <div className="flex justify-between items-center">
-          <div>
-            <h4 className="text-xl font-bold">Butuh Sembako?</h4>
-            <p className="text-sm text-on-surface-variant">Pesan paket dapur hari ini.</p>
-          </div>
-          <div className="w-12 h-12 bg-surface-container-low rounded-full flex items-center justify-center">
-            <ShoppingBasket className="w-6 h-6 text-primary" />
-          </div>
-        </div>
-        <button
-          onClick={() => onDetail('sembako')}
-          className="w-full btn-primary py-4 rounded-2xl font-bold "
+    {/* ── PROMO BANNER STRIP ──────────────────────────── */}
+    <div className="px-6 py-6 space-y-3">
+      <div className="flex items-center justify-between mb-1">
+        <h3 className="font-bold text-base text-on-surface">Informasi & Promo</h3>
+        <span className="text-[10px] text-primary font-bold">Geser →</span>
+      </div>
+      <div className="flex gap-3 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none' }}>
+        {/* Voucher Umroh banner */}
+        <div
+          onClick={() => onDetail('voucher_umroh')}
+          className="flex-shrink-0 w-64 bg-gradient-to-br from-[#CFA144] to-[#F1D77A] rounded-3xl p-5 cursor-pointer active:scale-95 transition-all shadow-lg relative overflow-hidden"
         >
-          Mulai Belanja Sekarang
-        </button>
+          <div className="absolute -right-6 -bottom-6 w-24 h-24 bg-white/20 rounded-full blur-xl" />
+          <p className="text-[#5C4510] text-[9px] font-extrabold uppercase tracking-widest mb-1">Eksklusif Anggota</p>
+          <h4 className="text-[#3B2800] text-lg font-black font-headline mb-2">Voucher Umroh</h4>
+          <span className="bg-white/50 text-[#5C4510] text-xs font-bold px-3 py-1 rounded-full">Rp 1.500.000 ✨</span>
+        </div>
+
+        {/* Sembako reminder */}
+        <div
+          onClick={() => onDetail('sembako')}
+          className="flex-shrink-0 w-56 card-green rounded-3xl p-5 cursor-pointer active:scale-95 transition-all shadow-lg relative overflow-hidden"
+        >
+          <div className="absolute -right-4 -bottom-4 w-20 h-20 bg-white/20 rounded-full blur-xl" />
+          <p className="text-[#0F2A1D]/70 text-[9px] font-extrabold uppercase tracking-widest mb-1">Jangan Lupa!</p>
+          <h4 className="text-[#0F2A1D] text-lg font-black font-headline mb-2">Pesan Sembako</h4>
+          <span className="bg-white/50 text-[#0F2A1D] text-xs font-bold px-3 py-1 rounded-full">Sebelum Tgl 25 🛒</span>
+        </div>
+
+        {/* RAT banner */}
+        <div className="flex-shrink-0 w-56 bg-surface-container-lowest rounded-3xl p-5 border border-outline-variant/20 card relative overflow-hidden">
+          <p className="text-primary text-[9px] font-extrabold uppercase tracking-widest mb-1">Agenda Koperasi</p>
+          <h4 className="text-on-surface text-lg font-black font-headline mb-1">Rapat Anggota</h4>
+          <p className="text-on-surface-variant text-[10px] font-medium">15 Oktober • Balai Sidoarjo</p>
+          <div className="mt-2 flex items-center gap-1">
+            <Calendar className="w-3.5 h-3.5 text-primary" />
+            <span className="text-primary text-[10px] font-bold">Minggu Depan</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div onClick={() => onDetail('voucher_umroh')} className="card bg-gradient-to-tr from-[#CFA144] to-[#F1D77A] p-6 rounded-3xl flex items-center justify-between cursor-pointer active:scale-95 transition-all shadow-xl border border-white/20">
-      <div className="text-[#5C4510]">
-        <p className="text-[10px] uppercase font-extrabold tracking-widest mb-1 opacity-80">Eksklusif Anggota</p>
-        <h4 className="text-2xl font-black font-headline mb-1">Voucher Umroh</h4>
-        <p className="text-xs font-bold bg-white/40 inline-block px-3 py-1 rounded-full shadow-sm">Rp 1.500.000</p>
-      </div>
-      <div className="bg-white p-4 rounded-2xl shadow-lg border border-white/50">
-        <Ticket className="w-8 h-8 text-[#CFA144]" />
-      </div>
-    </div>
-
-    <section className="space-y-4">
-      <div className="flex justify-between items-center px-1">
-        <h3 className="text-2xl font-bold font-headline">Katalog Terbaru</h3>
-        <button onClick={() => onDetail('sembako')} className="text-primary font-bold text-sm">Lihat Semua</button>
+    {/* ── KATALOG TERBARU ──────────────────────────────── */}
+    <div className="px-6 space-y-4">
+      <div className="flex justify-between items-center">
+        <h3 className="text-xl font-bold font-headline text-on-surface">Katalog Terbaru</h3>
+        <button onClick={() => onDetail('sembako')} className="text-primary font-bold text-sm">Lihat Semua →</button>
       </div>
       <div className="grid grid-cols-2 gap-4">
         {[
-          { name: 'Beras Premium 5kg', price: 'Rp 72.500', img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=300&q=80', badge: 'Terlaris' },
-          { name: 'Minyak Goreng 2L', price: 'Rp 34.200', img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=300&q=80', badge: 'Hemat' },
-          { name: 'Gula Pasir 1kg', price: 'Rp 16.000', img: 'https://images.unsplash.com/photo-1622484211148-52b36c4b62db?auto=format&fit=crop&w=300&q=80' },
-          { name: 'Telur Ayam 1kg', price: 'Rp 28.500', img: 'https://images.unsplash.com/photo-1587486913049-53fc88980cfc?auto=format&fit=crop&w=300&q=80' },
+          { name: 'Paket Berkah 1', price: 'Rp 145.000', img: paket1Img, badge: 'Terlaris' },
+          { name: 'Paket Hemat 2', price: 'Rp 85.000', img: paket2Img, badge: 'Hemat' },
+          { name: 'Paket Komplit 3', price: 'Rp 215.000', img: paket3Img },
+          { name: 'Paket Spesial 4', price: 'Rp 325.000', img: paket4Img, badge: 'Premium' },
         ].map((p) => (
-          <div key={p.name} className="group flex flex-col space-y-2">
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-surface-container-low">
-              <img src={p.img} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" referrerPolicy="no-referrer" />
+          <div key={p.name} onClick={() => onDetail('checkout')} className="group bg-surface-container-lowest rounded-3xl overflow-hidden card cursor-pointer active:scale-95 transition-all">
+            <div className="relative aspect-[4/3] overflow-hidden bg-surface-container-low">
+              <img src={p.img} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-500" />
               {p.badge && (
-                <span className="absolute top-4 left-4 btn-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase">{p.badge}</span>
+                <span className="absolute top-3 left-3 btn-primary text-[9px] font-black px-2.5 py-1 rounded-full uppercase shadow">{p.badge}</span>
               )}
             </div>
-            <div className="px-2">
-              <h5 className="font-bold text-on-surface leading-tight">{p.name}</h5>
-              <p className="text-primary font-extrabold">{p.price}</p>
+            <div className="p-3">
+              <h5 className="font-bold text-sm text-on-surface leading-snug">{p.name}</h5>
+              <p className="text-primary font-extrabold text-sm mt-0.5">{p.price}</p>
             </div>
           </div>
         ))}
       </div>
-    </section>
-
-    <section className="bg-surface-container-low rounded-[2rem] p-6 space-y-4">
-      <h3 className="text-xl font-bold text-primary font-headline">Rapat Anggota</h3>
-      <p className="text-sm text-on-surface-variant">Kami mengundang Ibu dalam pertemuan rutin bulanan Minggu depan.</p>
-      <div className="space-y-4">
-        <div className="flex items-center gap-4">
-          <div className="p-3 bg-white rounded-xl text-primary"><Calendar className="w-6 h-6" /></div>
-          <span className="font-bold">15 Oktober 2023</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <div className="p-3 bg-white rounded-xl text-primary"><MapPin className="w-6 h-6" /></div>
-          <span className="font-bold">Balai Pertemuan Sidoarjo</span>
-        </div>
-      </div>
-      <div className="rounded-3xl overflow-hidden h-48 shadow-lg">
-        <img src="https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&w=600&q=80" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-      </div>
-    </section>
+    </div>
   </motion.div>
 );
 
@@ -500,20 +496,62 @@ const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
       <h2 className="text-2xl font-extrabold text-primary font-headline tracking-tight">Tabungan Saya</h2>
     </section>
 
-    <div className="card-balance p-8 rounded-[2rem]  space-y-6 shadow-2xl relative overflow-hidden">
-      <div className="relative z-10">
-        <p className="text-on-primary-container/80 text-[10px] font-bold uppercase tracking-widest">Saldo Total Gabungan</p>
-        <h3 className="text-3xl font-bold mt-2 font-mono">Rp 7.825.000</h3>
-        <div className="mt-8 flex gap-4">
+    <div className="card-balance p-8 rounded-[2rem] space-y-5 shadow-2xl relative overflow-hidden">
+      <div className="relative z-10 space-y-5">
+        {/* Total */}
+        <div>
+          <p className="text-white/70 text-[10px] font-bold uppercase tracking-widest">Saldo Total Gabungan</p>
+          <h3 className="text-3xl font-black mt-1 font-mono text-white drop-shadow">Rp 7.825.000</h3>
+        </div>
+
+        {/* Divider */}
+        <div className="h-px bg-white/20"></div>
+
+        {/* Breakdown */}
+        <div className="space-y-2">
+          <div className="bg-white/15 backdrop-blur-sm px-4 py-3 rounded-2xl border border-white/20 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 text-green-300" />
+              <div>
+                <p className="text-white/80 text-[9px] font-bold uppercase tracking-wider">Bisa Ditarik</p>
+                <p className="text-white/55 text-[9px]">Simpanan Sukarela</p>
+              </div>
+            </div>
+            <p className="text-white font-black text-base font-mono">Rp 7.200.000</p>
+          </div>
+          <div className="bg-black/15 backdrop-blur-sm px-4 py-3 rounded-2xl border border-white/10 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Lock className="w-4 h-4 text-yellow-300" />
+              <div>
+                <p className="text-white/80 text-[9px] font-bold uppercase tracking-wider">Terkunci</p>
+                <p className="text-white/55 text-[9px]">Simpanan Pokok + Wajib</p>
+              </div>
+            </div>
+            <p className="text-white font-black text-base font-mono">Rp 625.000</p>
+          </div>
+          <div className="bg-[#CFA144]/30 backdrop-blur-sm px-4 py-3 rounded-2xl border border-[#F1D77A]/30 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <Gift className="w-4 h-4 text-yellow-200" />
+              <div>
+                <p className="text-white/80 text-[9px] font-bold uppercase tracking-wider">Bonus Saya</p>
+                <p className="text-white/55 text-[9px]">Referral + SHU</p>
+              </div>
+            </div>
+            <p className="text-yellow-200 font-black text-base font-mono">Rp 495.000</p>
+          </div>
+        </div>
+
+        {/* Buttons */}
+        <div className="flex gap-4">
           <button
             onClick={() => onNavigate('setor')}
-            className="flex-1 bg-white/20 backdrop-blur-md text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
+            className="flex-1 bg-white/20 backdrop-blur-md text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all border border-white/30"
           >
             <TrendingUp className="w-5 h-5" /> Setor
           </button>
           <button
             onClick={() => onNavigate('tarik')}
-            className="flex-1 bg-white text-primary py-4 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all"
+            className="flex-1 bg-white text-primary py-4 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition-all shadow-lg"
           >
             <Wallet className="w-5 h-5" /> Tarik
           </button>
@@ -542,6 +580,35 @@ const MainSimpanan = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
           <p className="text-base font-bold text-primary font-mono">{s.val}</p>
         </div>
       ))}
+    </div>
+
+    <div className="space-y-4">
+      <h3 className="text-lg font-bold text-on-surface px-1">Bonus Saya</h3>
+      <div className="card bg-gradient-to-tr from-[#CFA144] to-[#F1D77A] p-1 rounded-3xl">
+        <div className="bg-surface-container-lowest rounded-[22px] overflow-hidden">
+          {[
+            { name: 'Bonus Referral', desc: 'Didapat dari mengajak anggota baru', val: 'Rp 150.000', icon: Users, color: 'text-[#CFA144]', bg: 'bg-[#CFA144]/10' },
+            { name: 'Bagi Hasil SHU', desc: 'Sisa Hasil Usaha koperasi tahunan', val: 'Rp 345.000', icon: TrendingUp, color: 'text-secondary-active', bg: 'bg-secondary/10' },
+          ].map((b, i) => (
+            <div key={b.name} className={`p-5 flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer ${i === 0 ? 'border-b border-outline-variant/20' : ''}`}>
+              <div className="flex items-center gap-4">
+                <div className={`w-10 h-10 ${b.bg} ${b.color} rounded-xl flex items-center justify-center`}>
+                  <b.icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-sm text-on-surface leading-tight">{b.name}</h4>
+                  <p className="text-[10px] text-on-surface-variant">{b.desc}</p>
+                </div>
+              </div>
+              <p className="text-base font-bold font-mono text-[#A0750A]">{b.val}</p>
+            </div>
+          ))}
+          <div className="p-4 bg-surface-container-low flex justify-between items-center">
+            <p className="text-xs font-bold text-on-surface-variant">Total Bonus</p>
+            <p className="text-lg font-black text-[#A0750A] font-mono">Rp 495.000</p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div className="bg-surface-container-lowest p-8 rounded-[2rem] card space-y-8">
@@ -827,7 +894,7 @@ const ScreenTentangKami = ({ onNavigate }: { onNavigate: (s: Screen) => void }) 
       <h2 className="text-2xl font-extrabold font-headline text-primary">KOPRIMA DPD SIDOARJO</h2>
       <p className="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Versi 1.0.4 | Resmi di Bawah Kewenangan DPD</p>
     </div>
-    
+
     <div className="w-full text-sm text-on-surface-variant leading-relaxed space-y-6 text-justify">
       <p>
         KOPRIMA DPD Sidoarjo adalah platform koperasi digital resmi milik Dewan Pengurus Daerah (DPD) Koperasi Konsumen Mina Tani (KOPRIMA) “Amanah” Indonesia di Kabupaten Sidoarjo.
@@ -849,7 +916,7 @@ const ScreenTentangKami = ({ onNavigate }: { onNavigate: (s: Screen) => void }) 
       <div className="card bg-surface-container-lowest p-5 rounded-2xl space-y-3">
         <h3 className="font-bold text-on-surface text-base">Sekretariat Resmi:</h3>
         <p className="text-xs leading-relaxed">
-          Perum Taman Candi Loka, Blok E-3 No. 08, RT 008/RW 005, Desa Ngampelsari, Kecamatan Candi, Kabupaten Sidoarjo, Jawa Timur 61271<br/><br/>
+          Perum Taman Candi Loka, Blok E-3 No. 08, RT 008/RW 005, Desa Ngampelsari, Kecamatan Candi, Kabupaten Sidoarjo, Jawa Timur 61271<br /><br />
           <strong>Telp:</strong> 0812-3333-8971 / 0877-5293-1354
         </p>
       </div>
