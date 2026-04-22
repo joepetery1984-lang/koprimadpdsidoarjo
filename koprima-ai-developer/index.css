@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700;800&family=Lexend:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* =========================
+     FONT SYSTEM
+  ========================= */
+  --font-sans: "Public Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Lexend", "Public Sans", sans-serif;
+  --font-body: "Public Sans", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* =========================
+     PRIMARY (BIRU LOGO)
+  ========================= */
+  --color-primary: #0E4A7B;
+  --color-primary-hover: #1F6AA5;
+  --color-primary-active: #0A3558;
+
+  --color-primary-container: #E6F0F8;
+  --color-on-primary-container: #0E4A7B;
+
+  /* =========================
+     SECONDARY (HIJAU LOGO)
+  ========================= */
+  --color-secondary: #6CC24A;
+  --color-secondary-hover: #8EDB6A;
+  --color-secondary-active: #4A9A2E;
+
+  --color-secondary-container: #EAF8E4;
+  --color-on-secondary-container: #2E6B1F;
+
+  /* =========================
+     GRADIENT (WAJIB UNTUK BRAND FEEL)
+  ========================= */
+  --gradient-primary: linear-gradient(135deg, #0E4A7B, #1F6AA5);
+  --gradient-secondary: linear-gradient(135deg, #6CC24A, #8EDB6A);
+  --gradient-mix: linear-gradient(135deg, #0E4A7B, #6CC24A);
+
+  /* =========================
+     SURFACE (CLEAN UI)
+  ========================= */
+  --color-surface: #F5F7FA;
+  --color-surface-container-low: #EEF2F5;
+  --color-surface-container: #E6EBF0;
+  --color-surface-container-high: #DDE3E8;
+  --color-surface-container-lowest: #FFFFFF;
+
+  /* =========================
+     TEXT & NEUTRAL
+  ========================= */
+  --color-on-surface: #1A1A1A;
+  --color-on-surface-variant: #5A6B75;
+
+  /* =========================
+     BORDER & OUTLINE
+  ========================= */
+  --color-outline-variant: #D0D7DE;
+
+  /* =========================
+     STATE COLORS
+  ========================= */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans antialiased;
+  }
+}
+
+.editorial-shadow {
+  box-shadow: 0 10px 30px -5px rgba(0, 79, 69, 0.08);
+}
+
+.glass-nav {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(248, 250, 249, 0.8);
+}
+
+@layer components {
+  .card-balance {
+    background: var(--gradient-primary);
+    color: white;
+  }
+  
+  .card-green {
+    background: var(--gradient-secondary);
+    color: #0F2A1D;
+  }
+  
+  .btn-primary {
+    background: var(--gradient-primary);
+    color: white;
+    box-shadow: 0 8px 20px rgba(14, 74, 123, 0.25);
+  }
+  
+  .card {
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  }
+  
+  .badge-active {
+    background: rgba(108, 194, 74, 0.15);
+    color: #4A9A2E;
+  }
+}
+
+/* =========================
+   PRINT STYLES
+========================= */
+@media print {
+  body {
+    background: white;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .print-area, .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 2rem !important;
+    box-shadow: none !important;
+    border-radius: 20px !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
