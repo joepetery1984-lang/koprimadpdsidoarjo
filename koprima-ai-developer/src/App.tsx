@@ -15,6 +15,7 @@ import paket1Img from './assets/paket1.png';
 import paket2Img from './assets/paket2.png';
 import paket3Img from './assets/paket3.png';
 import paket4Img from './assets/paket4.png';
+import logoImg from './assets/logo.png';
 import {
   ArrowRight,
   Bell,
@@ -56,7 +57,8 @@ type Screen =
   | 'login' | 'register'
   | 'home' | 'sembako' | 'simpanan' | 'profil' | 'notifications'
   | 'checkout' | 'payment_method' | 'success_payment'
-  | 'setor' | 'tarik' | 'bayar_simpanan' | 'riwayat_simpanan' | 'referral';
+  | 'setor' | 'tarik' | 'bayar_simpanan' | 'riwayat_simpanan' | 'referral'
+  | 'ubah_profil' | 'keamanan' | 'bantuan' | 'tentang_kami' | 'syarat_ketentuan' | 'kebijakan_privasi';
 
 // --- SHARED COMPONENTS ---
 
@@ -604,8 +606,9 @@ const MainProfil = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
         { title: 'Referral Saya', icon: Users, desc: 'Daftar anggota yang diajak', id: 'referral' },
         { title: 'Keamanan', icon: Lock, desc: 'PIN & Kata Sandi', id: 'keamanan' },
         { title: 'Bantuan', icon: HelpCircle, desc: 'Pusat dukungan 24/7', id: 'bantuan' },
+        { title: 'Tentang Kami', icon: Info, desc: 'Informasi aplikasi KOPRIMA', id: 'tentang_kami' },
       ].map((m) => (
-        <button key={m.title} onClick={() => m.id === 'referral' ? onNavigate('referral') : undefined} className="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-all group">
+        <button key={m.title} onClick={() => onNavigate(m.id as Screen)} className="w-full flex items-center justify-between p-6 hover:bg-surface-container-low transition-all group">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-primary/5 text-primary rounded-2xl flex items-center justify-center">
               <m.icon className="w-6 h-6" />
@@ -676,6 +679,360 @@ const ScreenReferral = () => (
         ))}
       </div>
     </section>
+  </motion.div>
+);
+
+const ScreenUbahProfil = () => (
+  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="pt-24 pb-32 px-6 space-y-8">
+    <div className="flex flex-col items-center space-y-4">
+      <div className="relative">
+        <div className="w-28 h-28 rounded-full p-1 bg-gradient-to-tr from-primary to-primary-container">
+          <div className="w-full h-full rounded-full border-4 border-surface-container-lowest overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          </div>
+        </div>
+        <button className="absolute bottom-0 right-0 btn-primary p-2 rounded-full border-2 border-surface-container-lowest">
+          <FileText className="w-4 h-4" />
+        </button>
+      </div>
+      <p className="text-sm font-bold text-primary">Ganti Foto Profil</p>
+    </div>
+    <div className="space-y-6">
+      <div className="card bg-surface-container-lowest p-6 rounded-3xl space-y-4">
+        <h3 className="font-bold text-lg text-on-surface border-b border-outline-variant/20 pb-2 mb-4">Informasi Pribadi</h3>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-on-surface-variant ml-1">Nama Lengkap</label>
+          <input type="text" defaultValue="Ibu Siti Aminah" className="w-full p-4 bg-surface-container-low rounded-xl outline-none focus:ring-2 focus:ring-primary font-bold text-on-surface" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-on-surface-variant ml-1">Nomor Induk Kependudukan (NIK)</label>
+          <input type="text" defaultValue="3515000000000000" className="w-full p-4 bg-surface-container-low rounded-xl outline-none focus:ring-2 focus:ring-primary font-bold text-on-surface" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-on-surface-variant ml-1">Nomor Telepon</label>
+          <input type="text" defaultValue="0812-3456-7890" className="w-full p-4 bg-surface-container-low rounded-xl outline-none focus:ring-2 focus:ring-primary font-bold text-on-surface" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-on-surface-variant ml-1">Alamat Email</label>
+          <input type="email" defaultValue="siti.aminah@example.com" className="w-full p-4 bg-surface-container-low rounded-xl outline-none focus:ring-2 focus:ring-primary font-bold text-on-surface" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-on-surface-variant ml-1">Alamat Domisili</label>
+          <textarea rows={3} defaultValue="Jl. Mawar No. 12, Sidoarjo" className="w-full p-4 bg-surface-container-low rounded-xl outline-none focus:ring-2 focus:ring-primary font-bold text-on-surface"></textarea>
+        </div>
+      </div>
+
+      <div className="card bg-surface-container-lowest p-6 rounded-3xl space-y-4">
+        <h3 className="font-bold text-lg text-on-surface border-b border-outline-variant/20 pb-2 mb-4">Informasi Rekening Bank</h3>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-on-surface-variant ml-1">Nama Bank</label>
+          <select className="w-full p-4 bg-surface-container-low rounded-xl outline-none focus:ring-2 focus:ring-primary font-bold text-on-surface appearance-none">
+            <option>Bank Mandiri</option>
+            <option>Bank BCA</option>
+            <option>Bank BRI</option>
+            <option>Bank BNI</option>
+            <option>Bank Syariah Indonesia (BSI)</option>
+          </select>
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-on-surface-variant ml-1">Nomor Rekening</label>
+          <input type="text" defaultValue="14100xxxxxxxx" className="w-full p-4 bg-surface-container-low rounded-xl outline-none focus:ring-2 focus:ring-primary font-bold text-on-surface font-mono tracking-wider" />
+        </div>
+        <div className="space-y-1">
+          <label className="text-xs font-bold text-on-surface-variant ml-1">Nama Pemilik Rekening</label>
+          <input type="text" defaultValue="Ibu Siti Aminah" className="w-full p-4 bg-surface-container-low rounded-xl outline-none focus:ring-2 focus:ring-primary font-bold text-on-surface border border-red-200 focus:border-transparent" />
+          <p className="text-[10px] text-red-500 font-medium ml-1 flex items-center gap-1 mt-1">
+            <Info className="w-3 h-3" />
+            Nama pemilik rekening wajib sama dengan Nama Lengkap
+          </p>
+        </div>
+      </div>
+    </div>
+    <button className="w-full btn-primary py-4 rounded-xl font-bold text-lg active:scale-95 transition-all">Simpan Perubahan</button>
+  </motion.div>
+);
+
+const ScreenKeamanan = () => (
+  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="pt-24 pb-32 px-6 space-y-8">
+    <section className="space-y-2">
+      <h2 className="text-2xl font-extrabold font-headline text-on-surface">Keamanan Akun</h2>
+      <p className="text-sm text-on-surface-variant">Pastikan PIN dan Kata Sandi Anda selalu rahasia.</p>
+    </section>
+    <div className="card bg-surface-container-lowest p-6 rounded-3xl space-y-6">
+      <div className="flex items-center justify-between">
+        <div>
+          <h4 className="font-bold text-on-surface">Ubah PIN Transaksi</h4>
+          <p className="text-xs text-on-surface-variant mt-1">Untuk keamanan transaksi finansial</p>
+        </div>
+        <button className="bg-primary/10 text-primary px-4 py-2 rounded-lg font-bold text-xs">Ubah</button>
+      </div>
+      <div className="h-px bg-outline-variant/20"></div>
+      <div className="flex items-center justify-between">
+        <div>
+          <h4 className="font-bold text-on-surface">Ubah Kata Sandi</h4>
+          <p className="text-xs text-on-surface-variant mt-1">Untuk masuk ke aplikasi KOPRIMA</p>
+        </div>
+        <button className="bg-primary/10 text-primary px-4 py-2 rounded-lg font-bold text-xs">Ubah</button>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const ScreenBantuan = () => (
+  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="pt-24 pb-32 px-6 space-y-8">
+    <div className="card-balance p-6 rounded-3xl text-center space-y-4 relative overflow-hidden">
+      <div className="relative z-10">
+        <HelpCircle className="w-12 h-12 text-white mx-auto mb-2 opacity-90" />
+        <h2 className="text-xl font-extrabold font-headline">Pusat Bantuan</h2>
+        <p className="text-sm text-white/80">Kami siap membantu Ibu 24/7</p>
+        <button className="mt-4 w-full bg-white text-[#0F2A1D] font-bold py-3 rounded-xl shadow-lg">Hubungi CS WhatsApp</button>
+      </div>
+      <div className="absolute -left-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+    </div>
+    <div className="space-y-4">
+      <h3 className="font-bold text-lg px-1">Pertanyaan Umum (FAQ)</h3>
+      <div className="card bg-surface-container-lowest rounded-[2rem] overflow-hidden">
+        {['Cara bayar simpanan wajib?', 'Berapa bunga simpanan sukarela?', 'Cara ambil sembako bulanan?'].map((q, i) => (
+          <div key={i} className={`p-5 flex justify-between items-center ${i !== 2 ? 'border-b border-outline-variant/10' : ''}`}>
+            <p className="font-bold text-sm text-on-surface">{q}</p>
+            <ChevronRight className="w-5 h-5 text-outline-variant" />
+          </div>
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
+const ScreenTentangKami = ({ onNavigate }: { onNavigate: (s: Screen) => void }) => (
+  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="pt-24 pb-32 px-6 space-y-8 flex flex-col items-center">
+    <div className="w-32 h-32 flex items-center justify-center mb-4 drop-shadow-2xl">
+      <img src={logoImg} alt="Logo KOPRIMA" className="w-full h-full object-contain" />
+    </div>
+    <div className="text-center space-y-2">
+      <h2 className="text-2xl font-extrabold font-headline text-primary">KOPRIMA DPD SIDOARJO</h2>
+      <p className="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">Versi 1.0.4 | Resmi di Bawah Kewenangan DPD</p>
+    </div>
+    
+    <div className="w-full text-sm text-on-surface-variant leading-relaxed space-y-6 text-justify">
+      <p>
+        KOPRIMA DPD Sidoarjo adalah platform koperasi digital resmi milik Dewan Pengurus Daerah (DPD) Koperasi Konsumen Mina Tani (KOPRIMA) “Amanah” Indonesia di Kabupaten Sidoarjo.
+      </p>
+      <p>
+        Aplikasi ini sepenuhnya berada di bawah kewenangan dan pengelolaan DPD Kabupaten Sidoarjo sesuai Surat Keputusan No. 01.002/0028/SK/KOPRIMA/DPP/IV/2026 yang ditetapkan oleh Dewan Pengurus Pusat KOPRIMA “Amanah” Indonesia pada tanggal 13 April 2026.
+      </p>
+
+      <div className="card bg-surface-container-lowest p-5 rounded-2xl space-y-3">
+        <h3 className="font-bold text-on-surface text-base">Susunan Pengurus DPD Sidoarjo:</h3>
+        <ul className="list-none space-y-2 text-xs">
+          <li><strong>Ketua DPD:</strong> Sri Widarmningsih, SE</li>
+          <li><strong>Sekretaris:</strong> Ir. Hery Koesmardianto</li>
+          <li><strong>Bendahara:</strong> Sulis Suryani</li>
+          <li><strong>Koordinator Pengawas:</strong> Astrid Anindyajati Striratna, S.IKom</li>
+        </ul>
+      </div>
+
+      <div className="card bg-surface-container-lowest p-5 rounded-2xl space-y-3">
+        <h3 className="font-bold text-on-surface text-base">Sekretariat Resmi:</h3>
+        <p className="text-xs leading-relaxed">
+          Perum Taman Candi Loka, Blok E-3 No. 08, RT 008/RW 005, Desa Ngampelsari, Kecamatan Candi, Kabupaten Sidoarjo, Jawa Timur 61271<br/><br/>
+          <strong>Telp:</strong> 0812-3333-8971 / 0877-5293-1354
+        </p>
+      </div>
+
+      <div className="card bg-surface-container-lowest p-5 rounded-2xl space-y-3">
+        <h3 className="font-bold text-on-surface text-base">Fitur Utama Aplikasi:</h3>
+        <ul className="list-disc pl-4 space-y-1 text-xs">
+          <li>Simpanan Pokok: Rp 100.000</li>
+          <li>Simpanan Wajib: Rp 25.000 per bulan</li>
+          <li>Simpanan Sukarela</li>
+          <li>Pemenuhan kebutuhan dapur harian anggota</li>
+          <li>Program pemberdayaan pertanian, perikanan, dan perdagangan</li>
+          <li>Transparansi bagi hasil & laporan keuangan</li>
+          <li>Akses Rapat Anggota Tahunan (RAT) secara digital</li>
+        </ul>
+      </div>
+
+      <p className="text-center font-bold italic mt-6 text-primary">
+        KOPRIMA DPD Sidoarjo hadir untuk mensejahterakan anggota melalui layanan koperasi digital yang aman, modern, dan sesuai mekanisme perkoperasian Indonesia.
+      </p>
+    </div>
+
+    <div className="w-full card bg-surface-container-lowest rounded-3xl overflow-hidden mt-8">
+      <button onClick={() => onNavigate('syarat_ketentuan')} className="w-full p-5 text-left font-bold text-sm text-on-surface border-b border-outline-variant/10 flex justify-between hover:bg-surface-container-low transition-colors">
+        Syarat & Ketentuan <ChevronRight className="w-4 h-4" />
+      </button>
+      <button onClick={() => onNavigate('kebijakan_privasi')} className="w-full p-5 text-left font-bold text-sm text-on-surface flex justify-between hover:bg-surface-container-low transition-colors">
+        Kebijakan Privasi <ChevronRight className="w-4 h-4" />
+      </button>
+    </div>
+    <p className="text-[10px] text-outline-variant text-center mt-12">© 2026 KOPRIMA SIDOARJO. All rights reserved.</p>
+  </motion.div>
+);
+
+const ScreenSyaratKetentuan = () => (
+  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="pt-24 pb-32 px-6 space-y-6 text-on-surface">
+    <div className="space-y-2 text-center mb-8">
+      <h2 className="text-2xl font-extrabold font-headline text-primary">SYARAT DAN KETENTUAN</h2>
+      <p className="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">KOPRIMA DPD SIDOARJO</p>
+      <p className="text-xs text-on-surface-variant">Versi 1.0.4 | Berlaku sejak 22 April 2026</p>
+    </div>
+
+    <div className="card bg-surface-container-lowest p-6 rounded-3xl space-y-6 text-sm leading-relaxed text-justify">
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">1. PENERIMAAN SYARAT</h3>
+        <p>Dengan mengunduh, mendaftar, dan menggunakan aplikasi KOPRIMA DPD Sidoarjo, Anda menyatakan telah membaca, memahami, dan menyetujui seluruh Syarat dan Ketentuan ini serta Kebijakan Privasi.</p>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">2. DEFINISI</h3>
+        <ul className="list-disc pl-4 space-y-1">
+          <li><strong>Koperasi:</strong> Koperasi Konsumen Mina Tani (KOPRIMA) “Amanah” Indonesia</li>
+          <li><strong>DPD Sidoarjo:</strong> Dewan Pengurus Daerah Kabupaten Sidoarjo yang ditetapkan berdasarkan SK No. 01.002/0028/SK/KOPRIMA/DPP/IV/2026</li>
+          <li><strong>Anggota:</strong> Pihak yang telah membayar Simpanan Pokok dan Simpanan Wajib serta disetujui oleh DPD Sidoarjo</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">3. KEANGGOTAAN</h3>
+        <ul className="space-y-1">
+          <li><strong>3.1.</strong> Simpanan Pokok: Rp 100.000 (satu kali bayar, tidak dapat ditarik selama masih menjadi anggota)</li>
+          <li><strong>3.2.</strong> Simpanan Wajib: Rp 25.000 per bulan (dibayar setiap bulan)</li>
+          <li><strong>3.3.</strong> Simpanan Sukarela: dapat dilakukan kapan saja sesuai kemampuan anggota</li>
+          <li><strong>3.4.</strong> Keanggotaan hanya berlaku setelah pembayaran Simpanan Pokok dan Simpanan Wajib pertama diverifikasi oleh DPD Sidoarjo.</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">4. HAK DAN KEWAJIBAN ANGGOTA</h3>
+        <p><strong>4.1. Hak Anggota:</strong></p>
+        <ul className="list-disc pl-4 space-y-1 mb-2">
+          <li>Mendapatkan layanan simpanan dan pinjaman sesuai ketentuan</li>
+          <li>Menerima bagi hasil usaha koperasi</li>
+          <li>Menghadiri dan memberikan suara dalam Rapat Anggota Tahunan (RAT)</li>
+          <li>Mendapatkan laporan keuangan dan perkembangan koperasi</li>
+        </ul>
+        <p><strong>4.2. Kewajiban Anggota:</strong></p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Membayar Simpanan Wajib tepat waktu</li>
+          <li>Mematuhi Anggaran Dasar dan Anggaran Rumah Tangga KOPRIMA</li>
+          <li>Menjaga kerahasiaan data dan akun aplikasi</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">5. BAGI HASIL USAHA</h3>
+        <p>Bagi hasil usaha akan dibagikan kepada anggota sesuai ketentuan Rapat Anggota Tahunan (RAT) dan mekanisme perkoperasian yang berlaku.</p>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">6. RAPAT ANGGOTA</h3>
+        <p>Rapat Anggota Tahunan (RAT) dilaksanakan minimal 1 (satu) kali dalam setahun. Anggota dapat mengikuti secara langsung atau melalui fitur digital yang disediakan aplikasi.</p>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">7. PENARIKAN SIMPANAN</h3>
+        <p>Simpanan Pokok tidak dapat ditarik selama masih menjadi anggota. Simpanan Wajib dan Sukarela dapat ditarik sesuai ketentuan yang berlaku setelah melalui proses verifikasi DPD Sidoarjo.</p>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">8. PENGHENTIAN KEANGGOTAAN</h3>
+        <p>Keanggotaan dapat berakhir karena:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Pengunduran diri tertulis</li>
+          <li>Tidak membayar Simpanan Wajib selama 3 bulan berturut-turut</li>
+          <li>Melanggar Anggaran Dasar / Anggaran Rumah Tangga</li>
+          <li>Diputuskan oleh Rapat Anggota</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">9. HUKUM YANG BERLAKU</h3>
+        <p>Syarat dan Ketentuan ini tunduk pada hukum Republik Indonesia, khususnya Undang-Undang Perkoperasian dan peraturan perundang-undangan terkait. Segala sengketa diselesaikan di Pengadilan Negeri Sidoarjo.</p>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">10. PERUBAHAN SYARAT</h3>
+        <p>DPD Sidoarjo berhak mengubah Syarat dan Ketentuan ini dengan pemberitahuan sebelumnya melalui aplikasi.</p>
+      </section>
+    </div>
+  </motion.div>
+);
+
+const ScreenKebijakanPrivasi = () => (
+  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="pt-24 pb-32 px-6 space-y-6 text-on-surface">
+    <div className="space-y-2 text-center mb-8">
+      <h2 className="text-2xl font-extrabold font-headline text-primary">KEBIJAKAN PRIVASI</h2>
+      <p className="text-[10px] font-bold text-on-surface-variant tracking-widest uppercase">KOPRIMA DPD SIDOARJO</p>
+      <p className="text-xs text-on-surface-variant">Versi 1.0.4 | Berlaku sejak 22 April 2026</p>
+    </div>
+
+    <div className="card bg-surface-container-lowest p-6 rounded-3xl space-y-6 text-sm leading-relaxed text-justify">
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">1. PENGUMPULAN DATA PRIBADI</h3>
+        <p>Kami mengumpulkan data pribadi Anda untuk keperluan keanggotaan dan pelayanan koperasi, meliputi:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Nama lengkap, NIK, tempat & tanggal lahir</li>
+          <li>Alamat domisili & alamat sekretariat</li>
+          <li>Nomor telepon & email</li>
+          <li>Data keuangan (simpanan, transaksi)</li>
+          <li>Foto KTP & dokumen pendukung lainnya</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">2. TUJUAN PENGGUNAAN DATA</h3>
+        <p>Data pribadi digunakan untuk:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Verifikasi dan persetujuan keanggotaan</li>
+          <li>Pencatatan simpanan dan transaksi</li>
+          <li>Pengiriman notifikasi, laporan keuangan, dan informasi RAT</li>
+          <li>Pemenuhan kewajiban pelaporan kepada OJK, Kementerian Koperasi, dan instansi terkait</li>
+          <li>Peningkatan layanan aplikasi</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">3. PEMBAGIAN DATA</h3>
+        <p>Data pribadi tidak akan dijual atau disewakan kepada pihak ketiga. Data hanya dibagikan kepada:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Dewan Pengurus Pusat (DPP) KOPRIMA “Amanah” Indonesia</li>
+          <li>Auditor dan lembaga pengawas koperasi</li>
+          <li>Instansi pemerintah yang berwenang (jika diwajibkan undang-undang)</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">4. KEAMANAN DATA</h3>
+        <p>Kami menerapkan standar keamanan tinggi termasuk enkripsi, kontrol akses, dan audit berkala untuk melindungi data Anda sesuai Undang-Undang Perlindungan Data Pribadi (UU PDP).</p>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">5. HAK ANDA SEBAGAI PENGGUNA</h3>
+        <p>Anda berhak:</p>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Mengakses data pribadi Anda</li>
+          <li>Meminta koreksi data yang salah</li>
+          <li>Meminta penghapusan data (dengan syarat keanggotaan telah berakhir)</li>
+          <li>Menarik persetujuan pemrosesan data</li>
+        </ul>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">6. RETENSI DATA</h3>
+        <p>Data akan disimpan selama Anda menjadi anggota dan selama diperlukan untuk memenuhi kewajiban hukum koperasi.</p>
+      </section>
+
+      <section className="space-y-2">
+        <h3 className="font-bold text-primary">7. KONTAK PRIVASI</h3>
+        <p>Jika Anda memiliki pertanyaan atau ingin menggunakan hak privasi, hubungi:</p>
+        <div className="bg-surface-container-low p-4 rounded-xl mt-2">
+          <p className="font-bold">DPD KOPRIMA Sidoarjo</p>
+          <p><strong>Email:</strong> admin@koprimasidoarjo.com</p>
+          <p><strong>Telp:</strong> 0812-3333-8971 / 0877-5293-1354</p>
+          <p><strong>Alamat:</strong> Perum Taman Candi Loka Blok E-3 No. 08, Desa Ngampelsari, Kec. Candi, Sidoarjo</p>
+        </div>
+      </section>
+    </div>
   </motion.div>
 );
 
@@ -1321,6 +1678,12 @@ export default function App() {
       case 'simpanan': return <MainSimpanan onNavigate={(s) => setScreen(s)} />;
       case 'profil': return <MainProfil onNavigate={(s) => setScreen(s)} />;
       case 'referral': return <ScreenReferral />;
+      case 'ubah_profil': return <ScreenUbahProfil />;
+      case 'keamanan': return <ScreenKeamanan />;
+      case 'bantuan': return <ScreenBantuan />;
+      case 'tentang_kami': return <ScreenTentangKami onNavigate={(s) => setScreen(s)} />;
+      case 'syarat_ketentuan': return <ScreenSyaratKetentuan />;
+      case 'kebijakan_privasi': return <ScreenKebijakanPrivasi />;
       case 'notifications': return <ScreenNotifikasi />;
       case 'checkout': return <CheckoutScreen onNext={() => setScreen('payment_method')} />;
       case 'payment_method': return <PaymentMethodScreen onNext={() => setScreen('success_payment')} />;
@@ -1333,7 +1696,7 @@ export default function App() {
     }
   };
 
-  const showHeader = ['home', 'sembako', 'simpanan', 'profil', 'notifications', 'checkout', 'payment_method', 'setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan', 'referral'].includes(screen);
+  const showHeader = ['home', 'sembako', 'simpanan', 'profil', 'notifications', 'checkout', 'payment_method', 'setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan', 'referral', 'ubah_profil', 'keamanan', 'bantuan', 'tentang_kami', 'syarat_ketentuan', 'kebijakan_privasi'].includes(screen);
   const showNav = ['home', 'sembako', 'simpanan', 'profil', 'riwayat_simpanan'].includes(screen);
 
   const getTitle = () => {
@@ -1351,6 +1714,12 @@ export default function App() {
       case 'bayar_simpanan': return 'TAGIHAN SIMPANAN';
       case 'riwayat_simpanan': return 'RIWAYAT TRANSAKSI';
       case 'referral': return 'REFERRAL SAYA';
+      case 'ubah_profil': return 'UBAH PROFIL';
+      case 'keamanan': return 'KEAMANAN AKUN';
+      case 'bantuan': return 'PUSAT BANTUAN';
+      case 'tentang_kami': return 'TENTANG KAMI';
+      case 'syarat_ketentuan': return 'SYARAT & KETENTUAN';
+      case 'kebijakan_privasi': return 'KEBIJAKAN PRIVASI';
       default: return 'KOPRIMA';
     }
   };
@@ -1365,7 +1734,9 @@ export default function App() {
             onBack={() => {
               if (['setor', 'tarik', 'bayar_simpanan', 'riwayat_simpanan'].includes(screen)) {
                 setScreen('simpanan');
-              } else if (screen === 'referral') {
+              } else if (['syarat_ketentuan', 'kebijakan_privasi'].includes(screen)) {
+                setScreen('tentang_kami');
+              } else if (['referral', 'ubah_profil', 'keamanan', 'bantuan', 'tentang_kami'].includes(screen)) {
                 setScreen('profil');
               } else if (screen === 'payment_method') {
                 setScreen('checkout');
